@@ -12,11 +12,16 @@
   <% end %>
 </ul>
 
-<h3>Menu</h3>
-<ul>
-  <% @event.contributions.each do |c| %>
-    <%= c.yummly_recipe_name %>
-    <%= c.yummly_cuisine_type %>
-    <%= c.yummly_course %>
-  <% end %>
-</ul>
+
+<% if @event.contributions.size != 0 %>
+  <h3>Menu</h3>
+  <ul>
+    <% @event.contributions.each do |c| %>
+      <%= c.yummly_recipe_name %>
+      <%= c.yummly_cuisine_type %>
+      <%= c.yummly_course %>
+    <% end %>
+  </ul>
+<% else %>
+<%= link_to "Plan a Menu for #{@event.name}", new_user_event_contribution_path(@host, @event) %>
+<% end %>

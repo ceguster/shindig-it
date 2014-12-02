@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'root#index'
 
   resources :users do
-    resources :events
+    resources :events do
+      resources :contributions
+    end
   end
 
 
