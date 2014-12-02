@@ -6,18 +6,18 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @host = User.find(params[:user_id])
+    # @host = User.find(session[:user_id])
   end
 
   def create
     @event = Event.create(event_params)
-    @host = User.find(params[:user_id])
-    redirect_to user_event_path(@host, @event)
+    @host = @event.host
+    redirect_to event_path(@event)
   end
 
   def show
     @event = Event.find(params[:id])
-    @host = User.find(params[:user_id])
+    @host = @event.host
   end
 
   private
