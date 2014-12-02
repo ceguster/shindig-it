@@ -3,7 +3,8 @@ require 'json'
 require 'pry'
 
   def trial
-    html = open("http://api.yummly.com/v1/api/recipes?_app_id=9e85e290&_app_key=38ad5aafd37cdfd1af59bdb8ecba4e7e&q=onion+soup").read()
+    url = "http://api.yummly.com/v1/api/recipes?_app_id=#{ENV['yummly_application_id']}&_app_key=#{ENV['yummly_application_key']}&q=steak"
+    html = open(url).read()
     hsh = JSON.parse(html)
     binding.pry
   end
