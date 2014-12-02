@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#Yummly gem for API calls
+gem 'yummly'
 #Using Postgres instead of SQLite3 for Heroku's sake
 gem 'pg' 
 #Managing API key info from Yummly
