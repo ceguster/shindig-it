@@ -5,12 +5,15 @@
 
 <%= image_tag(@user.image_path, size: "150") %>
 
-<h3><%= @user.first_name %>'s Events</h3>
+<h3><%= link_to "#{@user.first_name}'s Events", user_events_path(@user) %>
   <ul> 
     <% @user.events.each do |event| %>
-      <li><%= event.name %></li>
+      <li><%= link_to "#{event.name}", user_event_path(@user, event) %></li>
     <% end %>
   </ul>
 
+<div>
+  <%= link_to "Plan a New Event", new_user_event_path(@user) %>
+</div>
 
 
