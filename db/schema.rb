@@ -11,10 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201214502) do
+ActiveRecord::Schema.define(version: 20141202022138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contributions", force: true do |t|
+    t.integer  "guest_id"
+    t.integer  "event_id"
+    t.string   "yummly_recipe_name"
+    t.string   "yummly_id"
+    t.string   "yummly_course"
+    t.string   "yummly_cuisine_type"
+    t.text     "yummly_ingredients"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.integer  "host_id"
+    t.string   "name"
+    t.text     "details"
+    t.date     "date"
+    t.time     "start_time"
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "tagline"
+  end
+
+  create_table "invitations", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "guest_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "guest_email"
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"

@@ -1,3 +1,16 @@
 <h1>User Show Page</h1>
 
 <p>Welcome, <%= @user.first_name %>!</p>
+
+
+<%= image_tag(@user.image_path, size: "150") %>
+
+<h3><%= @user.first_name %>'s Events</h3>
+  <ul> 
+    <% @user.events.each do |event| %>
+      <li><%= event.name %></li>
+    <% end %>
+  </ul>
+
+
+
