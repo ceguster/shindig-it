@@ -1,0 +1,22 @@
+<h1><%= @event.name %></h1>
+<h2>by <%= @host.full_name %></h2>
+<h3>"<%= @event.tagline %>"</h3><br>
+
+<h3>When? <%= @event.date %>, at <%= @event.start_time %></h3><br>
+<h3>Where? <%= @event.location %></h3><br>
+
+<h3>Guest List</h3>
+<ul>
+  <% @event.invitations.each do |invite| %>
+    <li><%= invite.guest.full_name %>: <%= invite.status %></li>
+  <% end %>
+</ul>
+
+<h3>Menu</h3>
+<ul>
+  <% @event.contributions.each do |c| %>
+    <%= c.yummly_recipe_name %>
+    <%= c.yummly_cuisine_type %>
+    <%= c.yummly_course %>
+  <% end %>
+</ul>
