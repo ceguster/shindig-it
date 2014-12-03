@@ -152,6 +152,7 @@ DEPENDENCIES
   figaro
   jbuilder
   jquery-rails
+  json
   pg
   pry
   rails

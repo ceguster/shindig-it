@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#Json gem for Yummly API call
+gem 'json'
 #Devise for login/auth
 gem 'devise'
 #Yummly gem for API calls
