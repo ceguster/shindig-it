@@ -1,4 +1,4 @@
-class Invitation < ActiveRecord::Base
+rclass Invitation < ActiveRecord::Base
 
   belongs_to :event
   belongs_to :guest, :class_name => "User"
