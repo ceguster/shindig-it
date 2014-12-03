@@ -1,6 +1,17 @@
-<h1> Create Your Menu </h1>
+<h1> Create Your Menu </h1><br>
 
+<%= form_tag("/recipes", method: :get, remote: true) do %>
+<%= label_tag(:course) %>
+<%= text_field_tag(:course, nil, placeholder: "e.g. main, appetizer, dessert") %>
+<%= label_tag(:cuisine_type) %>
+<%= text_field_tag(:cuisine_type, nil, placeholder: "e.g. Italian, French") %>
+<%= label_tag(:main_ingredient) %>
+<%= text_field_tag(:main_ingredient, nil, placeholder: "e.g. Chicken, Beef") %>
+<%= submit_tag "Find A Recipe" %>
+<% end %>
 
+<div class="recipes"></div>
 
 <br>
 <%= link_to "Return to #{@event.name}", event_path(@event) %>
+
