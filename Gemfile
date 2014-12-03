@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#Devise for login/auth
+gem 'devise'
 #Yummly gem for API calls
 gem 'yummly'
 #Using Postgres instead of SQLite3 for Heroku's sake
@@ -46,6 +48,8 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+
 end
 
 
