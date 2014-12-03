@@ -1,5 +1,4 @@
 <h1>BEST EVENT EVER!</h1>
-
 <%= form_for [@host, Event.new] do |f| %> 
 <%= f.label :name %>    <%= f.text_field :name, :placeholder => "Event name" %>
 <%= f.label :details %> <%= f.text_field :details, :placeholder => "Event details, e.g. attire, theme, etc." %>

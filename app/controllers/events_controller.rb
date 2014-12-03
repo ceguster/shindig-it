@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
 
@@ -6,12 +7,12 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    # @host = User.find(session[:user_id])
   end
 
   def create
-    @event = Event.create(event_params)
-    @host = @event.host
+    @event = Event.new(event_params)
+    @event.host = current_user
+    @event.save
     redirect_to event_path(@event)
   end
 
