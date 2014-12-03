@@ -21,8 +21,6 @@ class RecipesController < ApplicationController
       recipe_hash[:ingredients] = match["ingredients"].join(", ")
       recipe_hash
     end
-    binding.pry
-
   end
 
 
