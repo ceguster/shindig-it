@@ -1,5 +1,5 @@
 <h1><%= @event.name %></h1>
-<h2>by <%= @host.email %></h2>
+<h2>by <%= @host.full_name %></h2>
 <% if @event.tagline %> <h3>"<%= @event.tagline %>"</h3><%end%><br>
 
 <h3>What? <%= @event.details %></h3><br>
@@ -10,7 +10,7 @@
   <h3>Guest List</h3>
   <ul>
     <% @event.invitations.each do |invite| %>
-      <li><%= invite.guest.email %>: <%= invite.status %></li>
+      <li><%= invite.guest.full_name %>: <%= invite.status %></li>
     <% end %>
   </ul>
 <% else %>

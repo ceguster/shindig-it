@@ -4,6 +4,8 @@ Rails.application.routes.draw do
  
   root 'root#index'
   
+  resources :profiles
+
   resources :events do
     resources :invitations
     resources :contributions
