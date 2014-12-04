@@ -15,7 +15,18 @@
   </div>
   <div>
     <%= link_to "See Full Recipe", @recipe_hsh[:source], :target => "_blank"%>
-    <%#= button_tag "Add to Menu", :class => "add-item" %>
-     <%= binding.pry %>
+  
+    <%= form_for [@event, Contribution.new], :remote => true do |f| %>
+    <%= f.hidden_field :event_id, :value => @event.id %>
+    <%= f.hidden_field :yummly_recipe_name, :value => @recipe_hsh[:name] %>
+    <%= f.hidden_field :yummly_id, :value => @recipe_hsh[:id] %>
+    <%= f.hidden_field :yummly_course, :value => @recipe_hsh[:course] %>
+    <%= f.hidden_field :yummly_cuisine_type, :value => @recipe_hsh[:cuisine_type] %>
+    <%= f.hidden_field :yummly_ingredients, :value => @recipe_hsh[:ingredients].join(", ") %>
+    <%= f.hidden_field :yummly_large_image, :value => @recipe_hsh[:large_image] %>
+    <%= f.hidden_field :yummly_num_servings, :value => @recipe_hsh[:num_servings] %>
+    <%= f.hidden_field :yummly_time, :value => @recipe_hsh[:time] %>
+    <%= f.submit "Add to Menu" %>
+    <% end %>
   </div>
 </div>

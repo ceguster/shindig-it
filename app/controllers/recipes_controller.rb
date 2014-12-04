@@ -24,12 +24,10 @@ class RecipesController < ApplicationController
       recipe_hash[:event_id] = @event.id
       recipe_hash
     end
-    # binding.pry
   end
 
   def show
-    # raise params.inspect
-    @event_id = params[:event_id]
+    @event = Event.find(params[:event_id])
     @id = params[:id]
     @recipe = Yummly.find(@id)
     @recipe_hsh = {}
@@ -39,6 +37,13 @@ class RecipesController < ApplicationController
     @recipe_hsh[:ingredients] = @recipe.ingredient_lines
     @recipe_hsh[:time] = @recipe.total_time
     @recipe_hsh[:source] = @recipe.json["source"]["sourceRecipeUrl"]
+    @recipe_hsh[:id] = @ide
+    if @recipe.attributes["course"]
+      @recipe_hsh[:course] = @recipe.attributes["course"].first
+    else
+      @recipe_hsh[:course] = "other"
+    end
+    @recipe_hsh[:cuisine_type] = @recipe.attributes["cuisine"].first
     render layout: false
   end
     
