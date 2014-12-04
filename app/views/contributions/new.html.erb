@@ -1,17 +1,22 @@
-<h1> Create Your Menu </h1><br>
+<html>
+  <body>
+    <header>
+      <h5><%= link_to "Return to #{@event.name}", event_path(@event) %> | 
+      <%= link_to "Return to profile", profile_path(current_user.id) %> | 
+      <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
+    </header>
+    <h1> Create Your Menu </h1><br>
 
-<%= form_tag("/recipes", method: :get, remote: true) do %>
-<%= label_tag(:course) %>
-<%= text_field_tag(:course, nil, placeholder: "e.g. main, appetizer, dessert") %>
-<%= label_tag(:cuisine_type) %>
-<%= text_field_tag(:cuisine_type, nil, placeholder: "e.g. Italian, French") %>
-<%= label_tag(:main_ingredient) %>
-<%= text_field_tag(:main_ingredient, nil, placeholder: "e.g. Chicken, Beef") %>
-<%= submit_tag "Find A Recipe" %>
-<% end %>
+    <%= form_tag("/recipes", method: :get, remote: true) do %>
+    <%= label_tag(:course) %>
+    <%= text_field_tag(:course, nil, placeholder: "e.g. main, appetizer, dessert") %><br>
+    <%= label_tag(:cuisine_type) %>
+    <%= text_field_tag(:cuisine_type, nil, placeholder: "e.g. Italian, French") %><br>
+    <%= label_tag(:main_ingredient) %>
+    <%= text_field_tag(:main_ingredient, nil, placeholder: "e.g. Chicken, Beef") %><br>
+    <%= submit_tag "Find A Recipe" %>
+    <% end %>
 
-<div class="recipes"></div>
-
-<br>
-<%= link_to "Return to #{@event.name}", event_path(@event) %>
-
+    <div class="recipes"></div>
+  </body>
+</html>

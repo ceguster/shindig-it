@@ -1,10 +1,14 @@
 <% @recipes.each do |recipe| %>
 <div class="recipe">
-  <h4><%= recipe[:name] %></h4>
-  <ul>
-    <li><%= recipe[:ingredients] %></li>
-    <li><%= recipe[:rating] %></li>
-  </ul>
-  <%= image_tag(recipe[:image], :size => 90) %>
+  <div>
+    <h4><%= recipe[:name] %></h4>
+    <ul>
+      <li><%= recipe[:ingredients] %></li>
+      <li><%= recipe[:rating] %></li>
+    </ul>
+  </div>
+  <div>
+    <%= image_tag(recipe[:image], :size => "90") %>
+  </div>
 </div>
 <% end %>

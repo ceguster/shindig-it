@@ -9,11 +9,23 @@ class User < ActiveRecord::Base
 
  #GUEST METHODS
  has_many :contributions, :through => :events, :foreign_key => 'guest_id'
-
+ has_many :invitations, :foreign_key => 'guest_id'
 
  def full_name
   "#{self.first_name} #{self.last_name}"
  end
+
+ #HOST method
+ def hosted_events
+  self.events
+ end
+
+ #guest
+  def invited_events
+    self.invitations.collect do |invitation|
+      invitation.event
+    end
+  end
 
 end
 

@@ -1,16 +1,32 @@
-<h1> Hi <%=@user.first_name %> </h1>
-<h3><%= link_to "Make a new event!", new_event_path %></h3>
+<html>
+  <body>
+    <header>
+      <h5><%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
+    </header>
+    <h1> Hi <%=@user.first_name %>! </h1>
+    <%= image_tag(@user.image, size: "90") %>
+    <h3><%= link_to "Make a new event!", new_event_path %></h3>
 
-<h3><%= @user.first_name%>'s Events </h3>
-<% if @user.events.size == 0 %>
-  <h4> You have no events! </h4>
-<% else %>
-  <ul> 
-    <% @user.events.each do |event| %>
-      <li><%= link_to "#{event.name}", event_path(event) %></li>
+    <h3>Your Hosted Events </h3>
+    <% if @user.hosted_events.size == 0 %>
+      <h4> You have no hosted events! </h4>
+    <% else %>
+      <ul> 
+        <% @user.hosted_events.each do |event| %>
+          <li><%= link_to "#{event.name}", event_path(event) %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
 
-
-<%=link_to "Log Out", destroy_user_session_path, :method => :delete %>
+    <h3>Your Invites </h3>
+    <% if @user.invited_events.size == 0 %>
+      <h4> You have no invites! </h4>
+    <% else %>
+      <ul> 
+        <% @user.invited_events.each do |event| %>
+          <li><%= link_to "#{event.name}", event_path(event) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </body>
+</html>
