@@ -25,6 +25,15 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @id = params[:id]
+    @recipe = Yummly.find(@id)
+    @recipe_hsh = {}
+    @recipe_hsh[:name] = @recipe.name
+    @recipe_hsh[:large_image] = @recipe.images.first.large_url
+    @recipe_hsh[:num_servings] = @recipe.number_of_servings
+    @recipe_hsh[:ingredients] = @recipe.ingredient_lines
+    @recipe_hsh[:time] = @recipe.total_time
+    @recipe_hsh[:source] = @recipe.json["source"]["sourceRecipeUrl"]
     binding.pry
   end
     
