@@ -9,7 +9,7 @@
   </div>
   <div>
     <%= image_tag(recipe[:image], :size => "90") %><br>
-    <%= link_to "More Info", recipe_path(recipe[:id]), :class => "fancybox"%>
+    <%= link_to "More Info", "#{recipe_path(recipe[:id])}?event_id=#{recipe[:event_id]}", :class => "fancybox"%>
     <%= button_tag "Add to Menu", :class => "add-item" %>
   </div>
 </div>

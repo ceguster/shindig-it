@@ -2,7 +2,8 @@ require 'open-uri'
 
 class RecipesController < ApplicationController
 
-  def index 
+  def index
+    @event = Event.find(params[:event_id].to_i)
     @course = params[:course]
     @cuisine_type = params[:cuisine_type]
     @main_ingredient = params[:main_ingredient]
@@ -20,11 +21,15 @@ class RecipesController < ApplicationController
       end
       recipe_hash[:rating] = match["rating"]
       recipe_hash[:ingredients] = match["ingredients"].join(", ")
+      recipe_hash[:event_id] = @event.id
       recipe_hash
     end
+    # binding.pry
   end
 
   def show
+    # raise params.inspect
+    @event_id = params[:event_id]
     @id = params[:id]
     @recipe = Yummly.find(@id)
     @recipe_hsh = {}
