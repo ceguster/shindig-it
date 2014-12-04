@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
     hsh = JSON.parse(html)
     @recipes = hsh["matches"].collect do |match|
       recipe_hash = {}
+      recipe_hash[:id] = match["id"]
       recipe_hash[:name] = match["recipeName"]
       if match["smallImageUrls"]
         recipe_hash[:image] = match["smallImageUrls"][0]
@@ -21,6 +22,10 @@ class RecipesController < ApplicationController
       recipe_hash[:ingredients] = match["ingredients"].join(", ")
       recipe_hash
     end
+  end
+
+  def show
+    binding.pry
   end
     
 end

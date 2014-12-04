@@ -3,12 +3,15 @@
   <div>
     <h4><%= recipe[:name] %></h4>
     <ul>
-      <li><%= recipe[:ingredients] %></li>
-      <li><%= recipe[:rating] %></li>
+      <li> Ingredients: <%= recipe[:ingredients] %></li>
+      <li>Rating: <%= recipe[:rating] %>/5</li>
     </ul>
   </div>
   <div>
-    <%= image_tag(recipe[:image], :size => "90") %>
+    <%= image_tag(recipe[:image], :size => "90") %><br>
+    <%#= button_tag "More Info", :class => "more-info", :id => recipe[:id]%>
+    <%= button_to "More Info", recipe_path(recipe[:id]), :method => 'get', :remote => true %>
+    <%= button_tag "Add to Menu", :class => "add-item" %>
   </div>
 </div>
 <% end %>
