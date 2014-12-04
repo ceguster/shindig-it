@@ -43,7 +43,11 @@ class RecipesController < ApplicationController
     else
       @recipe_hsh[:course] = "other"
     end
-    @recipe_hsh[:cuisine_type] = @recipe.attributes["cuisine"].first
+    if @recipe.attributes["cuisine"]
+      @recipe_hsh[:cuisine_type] = @recipe.attributes["cuisine"].first
+    else
+      @recipe_hsh[:cuisine_type] = "other"
+    end
     render layout: false
   end
     
