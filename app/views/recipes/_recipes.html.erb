@@ -3,12 +3,13 @@
   <div>
     <h4><%= recipe[:name] %></h4>
     <ul>
-      <li><%= recipe[:ingredients] %></li>
-      <li><%= recipe[:rating] %></li>
+      <li> Ingredients: <%= recipe[:ingredients] %></li>
+      <li>Rating: <%= recipe[:rating] %>/5</li>
     </ul>
   </div>
   <div>
-    <%= image_tag(recipe[:image], :size => "90") %>
+    <%= image_tag(recipe[:image], :size => "90") %><br>
+    <%= link_to "More Info", "#{recipe_path(recipe[:id])}?event_id=#{recipe[:event_id]}", :class => "fancybox"%>
   </div>
 </div>
 <% end %>

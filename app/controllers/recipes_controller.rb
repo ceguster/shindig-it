@@ -2,7 +2,8 @@ require 'open-uri'
 
 class RecipesController < ApplicationController
 
-  def index 
+  def index
+    @event = Event.find(params[:event_id].to_i)
     @course = params[:course]
     @cuisine_type = params[:cuisine_type]
     @main_ingredient = params[:main_ingredient]
@@ -11,6 +12,7 @@ class RecipesController < ApplicationController
     hsh = JSON.parse(html)
     @recipes = hsh["matches"].collect do |match|
       recipe_hash = {}
+      recipe_hash[:id] = match["id"]
       recipe_hash[:name] = match["recipeName"]
       if match["smallImageUrls"]
         recipe_hash[:image] = match["smallImageUrls"][0]
@@ -19,8 +21,34 @@ class RecipesController < ApplicationController
       end
       recipe_hash[:rating] = match["rating"]
       recipe_hash[:ingredients] = match["ingredients"].join(", ")
+      recipe_hash[:event_id] = @event.id
       recipe_hash
     end
+  end
+
+  def show
+    @event = Event.find(params[:event_id])
+    @id = params[:id]
+    @recipe = Yummly.find(@id)
+    @recipe_hsh = {}
+    @recipe_hsh[:name] = @recipe.name
+    @recipe_hsh[:large_image] = @recipe.images.first.large_url
+    @recipe_hsh[:num_servings] = @recipe.number_of_servings
+    @recipe_hsh[:ingredients] = @recipe.ingredient_lines
+    @recipe_hsh[:time] = @recipe.total_time
+    @recipe_hsh[:source] = @recipe.json["source"]["sourceRecipeUrl"]
+    @recipe_hsh[:id] = @ide
+    if @recipe.attributes["course"]
+      @recipe_hsh[:course] = @recipe.attributes["course"].first
+    else
+      @recipe_hsh[:course] = "other"
+    end
+    if @recipe.attributes["cuisine"]
+      @recipe_hsh[:cuisine_type] = @recipe.attributes["cuisine"].first
+    else
+      @recipe_hsh[:cuisine_type] = "other"
+    end
+    render layout: false
   end
     
 end
