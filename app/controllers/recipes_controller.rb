@@ -34,7 +34,7 @@ class RecipesController < ApplicationController
     @recipe_hsh[:ingredients] = @recipe.ingredient_lines
     @recipe_hsh[:time] = @recipe.total_time
     @recipe_hsh[:source] = @recipe.json["source"]["sourceRecipeUrl"]
-    binding.pry
+    render layout: false
   end
     
 end

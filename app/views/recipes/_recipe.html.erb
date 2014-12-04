@@ -1,0 +1,20 @@
+<div>
+  <div>
+    <%= image_tag(@recipe_hsh[:large_image])%>
+  </div>
+  <div>
+    <h2><%=@recipe_hsh[:name]%></h2>
+    <h4>Number of Servings: <%=@recipe_hsh[:num_servings]%></h4>
+    <h4>Total Time: <%=@recipe_hsh[:time]%></h4>
+    <h4> Ingredients: </h4>
+    <ul>
+    <% @recipe_hsh[:ingredients].each do |ingredient| %>
+      <li><%= ingredient %></li>
+    <% end %>
+    </ul>
+  </div>
+  <div>
+    <%= link_to "See Full Recipe", @recipe_hsh[:source], :target => "_blank"%>
+    <%= button_tag "Add to Menu", :class => "add-item" %>
+  </div>
+</div>

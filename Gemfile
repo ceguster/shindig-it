@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+#gems for fancybox
+gem 'fancybox-rails'
 #Json gem for Yummly API call
 gem 'json'
 #Devise for login/auth
