@@ -10,7 +10,8 @@ class Event < ActiveRecord::Base
    menu = {}
    menu_courses = self.contributions.collect do |c|
       c.yummly_course
-    end.uniq!
+    end
+    menu_courses = menu_courses.uniq
     menu_courses.each do |mc|
       menu[mc] = []
     end
