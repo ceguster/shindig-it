@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204215818) do
+ActiveRecord::Schema.define(version: 20141205193339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20141204215818) do
     t.string   "yummly_large_image"
     t.string   "yummly_num_servings"
     t.string   "yummly_time"
+    t.string   "yummly_source"
   end
 
   create_table "events", force: true do |t|

@@ -25,13 +25,15 @@
     <br> 
     <% if @event.contributions.size != 0 %>
       <h3>Menu</h3>
-      <ul>
-        <% @event.contributions.each do |c| %>
-          <%= c.yummly_recipe_name %>
-          <%= c.yummly_cuisine_type %>
-          <%= c.yummly_course %>
+        <% @event.menu.each do |k,v| %>
+          <h4><%= k %></h4>
+            <ul>
+              <% v.each do |contribution| %>
+                <li><%= contribution.yummly_recipe_name %></li>
+              <% end %>
+            </ul>
         <% end %>
-      </ul>
+       <%= link_to "Add to menu for #{@event.name}", new_event_contribution_path(@event) %>  
     <% else %>
     <%= link_to "Create menu for #{@event.name}", new_event_contribution_path(@event) %>
     <% end %>
