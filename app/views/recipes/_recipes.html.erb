@@ -10,6 +10,10 @@
   <div>
     <%= image_tag(recipe[:image], :size => "90") %><br>
     <%= link_to "More Info", "#{recipe_path(recipe[:id])}?event_id=#{recipe[:event_id]}", :class => "fancybox"%>
+    <%= form_tag("/recipes/#{recipe[:id]}?event_id=#{recipe[:event_id]}", method: :get, remote: true) do %>
+    <%= submit_tag "Add to Menu" %>
+    <% end %>
   </div>
 </div>
 <% end %>
+
