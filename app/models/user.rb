@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # after_create :send_welcome_mail
+
  #HOST METHODS
  has_many :events, :foreign_key => 'host_id'
 
@@ -20,12 +22,16 @@ class User < ActiveRecord::Base
   self.events
  end
 
- #guest
+ #GUEST method
   def invited_events
     self.invitations.collect do |invitation|
       invitation.event
     end
   end
 
+  # private
+  #   def send_welcome_mail
+  #     @user = self
+  #     UserMailer.welcome_email(@user).deliver
+  #   end
 end
-

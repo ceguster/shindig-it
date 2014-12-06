@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <header>
+      <h5><%= link_to "Return to #{@event.name}", event_path(@event) %> | 
+      <%= link_to "Return to profile", profile_path(current_user.id) %> | 
+      <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
+    </header>
+    <h1> Invite Guests to <%= @event.name %>! </h1>
+    <%= form_for [@event, Invitation.new], remote: true do |f| %>
+    <%= f.label :guest_email %>
+    <%= f.text_field :guest_email, placeholder: "Enter guest's email here" %>
+    <%= f.submit "Add to guest list" %>
+    <% end %>
+
+    <h3> Invitations </h3>
+    <div>
+      <ul class="invites">
+      <% @event.invitations.each do |invite| %>
+      <li><%= invite.guest.full_name %></li>
+      <% end %>
+      </ul>
+    </div>

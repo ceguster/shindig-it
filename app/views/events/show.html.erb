@@ -19,6 +19,7 @@
           <li><%= invite.guest.full_name %>: <%= invite.status %></li>
         <% end %>
       </ul>
+      <%= link_to "Invite more guests to #{@event.name}", new_event_invitation_path(@event) %>
     <% else %>
       <%= link_to "Invite guests to #{@event.name}", new_event_invitation_path(@event) %>
     <% end %>
