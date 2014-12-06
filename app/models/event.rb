@@ -25,4 +25,9 @@ class Event < ActiveRecord::Base
     menu
   end
 
+  def event_invite(user)
+    @user = user
+    Invitation.find_by(event_id: self.id, guest_id: @user.id)
+  end
+
 end

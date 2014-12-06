@@ -10,13 +10,15 @@
 
     <h3>What? <%= @event.details %></h3><br>
     <h3>When? <%= @event.date %>, at <%= @event.start_time %></h3><br>
-    <h3>Where? <%= @event.location %></h3><br>
+    <h3>Where? <%= @event.location %></h3>
+
+    <h4> <%= link_to "Edit event", edit_event_path(@event) %><br>
 
     <% if @event.invitations.size != 0 %>
       <h3>Guest List</h3>
       <ul>
         <% @event.invitations.each do |invite| %>
-          <li><%= invite.guest.full_name %>: <%= invite.status %></li>
+          <li><%= invite.guest.full_name %> - <%= invite.status %></li>
         <% end %>
       </ul>
       <%= link_to "Invite more guests to #{@event.name}", new_event_invitation_path(@event) %>

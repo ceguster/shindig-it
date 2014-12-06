@@ -29,6 +29,30 @@ class User < ActiveRecord::Base
     end
   end
 
+  def pending_events
+    pending_events = []
+    self.invitations.each do |invite|
+      pending_events << invite.event if invite.status == "pending"
+    end
+    pending_events
+  end
+
+  def upcoming_events
+    coming_soon = []
+    self.invitations.each do |invite|
+      invite.event if invite.status == "attending" && invite.event.date >= Date.today
+    end
+    coming_soon
+  end
+
+  def past_events
+    past_events = []
+    self.invitations.each do |invite|
+      invite.event if invite.status == "attending" && invite.event.date < Date.today
+    end
+    past_events
+  end
+
   # private
   #   def send_welcome_mail
   #     @user = self

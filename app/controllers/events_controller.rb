@@ -5,6 +5,11 @@ class EventsController < ApplicationController
 
   end
 
+  def show
+    @event = Event.find(params[:id])
+    @host = @event.host
+  end
+
   def new
     @event = Event.new
   end
@@ -16,9 +21,21 @@ class EventsController < ApplicationController
     redirect_to event_path(@event)
   end
 
-  def show
+  def edit
     @event = Event.find(params[:id])
     @host = @event.host
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @time = @event.start_time
+    @event.update(event_params)
+    if @event.start_time == nil
+      @event.start_time = @time
+      @event.save
+    end
+
+    redirect_to @event
   end
 
   private

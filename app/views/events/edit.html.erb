@@ -1,0 +1,25 @@
+<html>
+  <body>
+    <header>
+      <h5><%= link_to "Return to #{@event.name}", event_path(@event) %> | 
+      <%= link_to "Return to profile", profile_path(current_user.id) %> | 
+      <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
+    </header>
+    <h1>BEST EVENT EVER!</h1>
+    <%= form_for @event do |f| %> 
+    <%= f.label :name %><br>
+    <%= f.text_field :name, :value => @event.name, :size => "50"%><br>
+    <%= f.label :details %><br>
+    <%= f.text_area :details, :value => @event.details%><br>
+    <%= f.label :tagline %><br>
+    <%= f.text_field :tagline, :value => @event.tagline, :size => "50"%><br>
+    <%= f.label :location %><br>
+    <%= f.text_field :location, :value => @event.location, :size => "50"%><br>
+    <%= f.label :date %><br>
+    <%= f.date_field :date, :value => @event.date%><br>
+    <%= f.label :start_time %><br>
+    <%= f.time_field :start_time, :value => @event.start_time, :type => "time" %><br>
+    <%= f.submit "PARTY TIME! EXCELLENT!" %>
+    <% end %>
+  </body>
+</html>

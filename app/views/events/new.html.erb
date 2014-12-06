@@ -1,10 +1,18 @@
-<h1>BEST EVENT EVER!</h1>
-<%= form_for [@host, Event.new] do |f| %> 
-<%= f.label :name %>    <%= f.text_field :name, :placeholder => "Event name" %>
-<%= f.label :details %> <%= f.text_field :details, :placeholder => "Event details, e.g. attire, theme, etc." %>
-<%= f.label :tagline %> <%= f.text_field :tagline, :placeholder => "Event tagline, e.g., 'Nothing will matter after this party'" %>
-<%= f.label :location %><%= f.text_field :location, :placeholder => "Where the party at?" %>
-<%= f.label :date %>    <%= f.date_field :date %>
-<%= f.label :start_time %>    <%= f.time_field :start_time %>
-<%= f.submit "PARTY TIME! EXCELLENT!" %>
-<% end %>
+<html>
+  <body>
+    <header>
+      <h5> <%= link_to "Return to profile", profile_path(current_user.id) %> |
+      <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
+    </header>
+    <h1>BEST EVENT EVER!</h1>
+    <%= form_for [@host, Event.new] do |f| %> 
+    <%= f.label :name %>    <%= f.text_field :name, :placeholder => "Event name" %>
+    <%= f.label :details %> <%= f.text_field :details, :placeholder => "Event details, e.g. attire, theme, etc." %>
+    <%= f.label :tagline %> <%= f.text_field :tagline, :placeholder => "Event tagline, e.g., 'Nothing will matter after this party'" %>
+    <%= f.label :location %><%= f.text_field :location, :placeholder => "Where the party at?" %>
+    <%= f.label :date %>    <%= f.date_field :date %>
+    <%= f.label :start_time %>    <%= f.time_field :start_time %>
+    <%= f.submit "PARTY TIME! EXCELLENT!" %>
+    <% end %>
+  </body>
+</html>

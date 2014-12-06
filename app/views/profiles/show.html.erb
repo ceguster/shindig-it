@@ -19,12 +19,29 @@
     <% end %>
 
     <h3>Your Invites </h3>
-    <% if @user.invited_events.size == 0 %>
-      <h4> You have no invites! </h4>
-    <% else %>
+    <% if @user.pending_events.size > 0 %>
+      <h3> Pending </h3>
+        <ul> 
+        <% @user.pending_events.each do |event| %>
+          <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user))%></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% if @user.upcoming_events.size > 0 %>
+      <h3> Upcoming </h3>
       <ul> 
-        <% @user.invited_events.each do |event| %>
-          <li><%= link_to "#{event.name}", event_path(event) %></li>
+        <% @user.upcoming_events.each do |event| %>
+          <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user))%></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% if @user.past_events.size > 0 %>
+      <h3> Past </h3>
+      <ul> 
+        <% @user.past_events.each do |event| %>
+          <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> </li>
         <% end %>
       </ul>
     <% end %>
