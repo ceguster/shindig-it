@@ -1,4 +1,0 @@
-if($('.unclaimed-<%=@contribution.id%>').length > 0){
-  $('.unclaimed-<%=@contribution.id%>').remove();
-  $('#<%=@contribution.id%>').append('<div class="claimed-<%=@contribution.id%>"> claimed by <%= @contribution.guest.full_name %> - <%= link_to("Unclaim", event_contribution_path(@event, @contribution), method: "patch", remote: true) %></div>');
-}

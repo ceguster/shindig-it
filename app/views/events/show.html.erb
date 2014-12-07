@@ -38,7 +38,7 @@
             <h4><%= k %></h4>
               <ul id="<%= current_user.full_name %>">
                 <% v.each do |contribution| %>
-                  <li id="<%= contribution.id %>" data-id="<%= @event.id %>"><%= contribution.yummly_recipe_name %><% if contribution.guest_id == nil %><div class="unclaimed" id="unclaimed-<%= contribution.id %>">Claim</div><% else %> claimed by <%= contribution.guest.full_name %> -<div class="claimed" id="claimed-<%= contribution.id %>">Unclaim</div><% end %><%= link_to "More Info", event_contribution_path(@event, contribution), :class => "fancybox" %></li>
+                  <li id="<%= contribution.id %>" data-id="<%= @event.id %>"><%= contribution.yummly_recipe_name %> <%= link_to "More Info", event_contribution_path(@event, contribution), :class => "fancybox" %><% if contribution.guest_id == nil %><div class="unclaimed" id="unclaimed-<%= contribution.id %>">Claim</div><% else %> <div id="claim-name-<%= contribution.id %>">claimed by <%= contribution.guest.full_name %> -</div><div class="claimed" id="claimed-<%= contribution.id %>">Unclaim</div><% end %></li>
                 <% end %>
               </ul>
           <% end %>
