@@ -85,7 +85,7 @@ Rails.application.configure do
     user_name: 'flatiron.shindigit@gmail.com',
     password: ENV['email_password'],
     domain: 'shindigit.herokuapp.com',
-    authentication: 'plain',
+    authentication: 'login',
     enable_starttls_auto: true
   }
 end
