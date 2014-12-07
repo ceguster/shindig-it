@@ -1,0 +1,15 @@
+  <div>
+    <%= image_tag(@contribution.yummly_large_image)%>
+  </div>
+  <div>
+    <h2><%= @contribution.yummly_recipe_name %></h2>
+    <h4>Number of Servings: <%= @contribution.yummly_num_servings %></h4>
+    <h4>Total Time: <%= @contribution.yummly_time %></h4>
+    <h4> Ingredients: </h4>
+    <ul>
+    <%= @contribution.yummly_ingredients %>
+    </ul>
+  </div>
+  <div> 
+    <%= link_to "See Full Recipe", @contribution.yummly_source, :target => "_blank"%>
+  </div>

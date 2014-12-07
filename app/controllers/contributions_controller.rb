@@ -35,6 +35,11 @@ class ContributionsController < ApplicationController
     end
   end
 
+  def show
+
+    @contribution = Contribution.find(params[:id])
+  end
+
   def update
     @user = current_user
     @event = Event.find(params[:event_id])
