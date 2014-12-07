@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
 
-  default from: 'flatiron.shindigit@gmail.com'
+  default from: 'test@example.com'
 
   def welcome_email(user)
     @user = user
