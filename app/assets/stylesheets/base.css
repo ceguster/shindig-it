@@ -1,0 +1,47 @@
+.wrapper{
+  clear: both;
+  width: 750px;
+  vertical-align: middle;
+  float: left;
+  margin: 2%;
+}
+
+.details{
+  display: block;
+  width: 100%;
+  background: #FFF;
+  margin-right: 2%;
+  margin-left: 2%;
+  padding: 10px;
+}
+
+.col_right{
+  width: 46%;
+  float: right;
+  display: inline-block;
+  border: 1px ;
+  background: #FFF;
+  margin: 2%;
+  padding: 5px;
+  height: 500px;
+}
+
+.col_left{
+  width: 46%;
+  float: left;
+  display: inline-block;
+  background: #FFF;
+  margin: 2%;
+  padding: 5px;
+  height: 500px;
+}
+
+footer{
+  margin-top: 25px;
+  background: #FFF;
+  display: block;
+  float: left;
+  width: 100%;
+  margin: 2%;
+  text-align: center;
+}
