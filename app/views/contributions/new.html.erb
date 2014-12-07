@@ -10,11 +10,11 @@
     <%= form_tag("/recipes", method: :get, remote: true) do %>
     <%= hidden_field_tag :event_id, @event.id %>
     <%= label_tag(:course) %>
-    <%= text_field_tag(:course, nil, placeholder: "e.g. main, appetizer, dessert", value: "main") %><br>
+    <%= text_field_tag(:course, nil, placeholder: "e.g. main, appetizer, dessert") %><br>
     <%= label_tag(:cuisine_type) %>
-    <%= text_field_tag(:cuisine_type, nil, placeholder: "e.g. Italian, French", value: "french") %><br>
+    <%= text_field_tag(:cuisine_type, nil, placeholder: "e.g. Italian, French") %><br>
     <%= label_tag(:main_ingredient) %>
-    <%= text_field_tag(:main_ingredient, nil, placeholder: "e.g. Chicken, Beef", value: "Chicken") %><br>
+    <%= text_field_tag(:main_ingredient, nil, placeholder: "e.g. Chicken, Beef") %><br>
     <%= submit_tag "Find A Recipe" %>
     <% end %>
 

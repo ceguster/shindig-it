@@ -5,7 +5,6 @@ class Event < ActiveRecord::Base
   has_many   :contributions
   has_many   :guests, :through => :invitations
 
-
   def menu
    menu = {}
    menu_courses = self.contributions.collect do |c|

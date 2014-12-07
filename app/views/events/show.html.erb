@@ -32,7 +32,7 @@
           <h4><%= k %></h4>
             <ul>
               <% v.each do |contribution| %>
-                <li><%= contribution.yummly_recipe_name %></li>
+                <li><%= contribution.yummly_recipe_name %> - <% if contribution.guest_id == nil %><%= link_to("Claim", event_contribution_path(@event, contribution), method: "patch", remote: true) %><% end %></li>
               <% end %>
             </ul>
         <% end %>

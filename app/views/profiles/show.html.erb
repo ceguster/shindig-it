@@ -32,7 +32,7 @@
       <h4> Upcoming </h4>
       <ul> 
         <% @user.upcoming_events.each do |event| %>
-          <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user))%></li>
+          <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> - <%= link_to "Change RSVP", edit_event_invitation_path(event, event.event_invite(@user))%></li>
         <% end %>
       </ul>
     <% end %>
