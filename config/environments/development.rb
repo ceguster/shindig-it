@@ -14,16 +14,16 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   #setup for mailer
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'localhost:3000'}
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
-    domain: 'gmail.com',
-    user_name: 'flatiron.shindigit',
+    user_name: 'flatiron.shindigit@gmail.com',
     password: '1586amiright',
     authentication: 'plain',
     enable_starttls_auto: true
@@ -48,6 +48,10 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+
+  #Because Heroku told me to.
+  config.assets.initialize_on_precompile = false
+
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

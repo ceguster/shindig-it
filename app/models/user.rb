@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # after_create :send_welcome_mail
+  after_create :send_welcome_mail
 
  #HOST METHODS
  has_many :events, :foreign_key => 'host_id'
@@ -53,9 +53,10 @@ class User < ActiveRecord::Base
     past_events
   end
 
-  # private
-  #   def send_welcome_mail
-  #     @user = self
-  #     UserMailer.welcome_email(@user).deliver
-  #   end
+    def send_welcome_mail
+      @mail = UserMailer.welcome_email(self)
+      binding.pry
+      @mail.deliver
+      binding.pry
+    end
 end
