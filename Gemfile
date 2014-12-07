@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
+#because heroku
+gem 'rails_12factor', group: :production
 #gems for fancybox
 gem 'fancybox-rails'
 #Json gem for Yummly API call
