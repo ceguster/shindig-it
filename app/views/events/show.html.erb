@@ -36,9 +36,9 @@
         <h3 >Menu</h3>
           <% @event.menu.each do |k,v| %>
             <h4><%= k %></h4>
-              <ul>
+              <ul id="<%= current_user.full_name %>">
                 <% v.each do |contribution| %>
-                  <li id="<%= contribution.id %>" data-id="<%= @event.id %>"><%= contribution.yummly_recipe_name %><% if contribution.guest_id == nil %><div class="unclaimed" id="unclaimed-<%= contribution.id %>">Claim</div><% else %><div class="claimed"> claimed by <%= contribution.guest.full_name %> - </div><% end %><%= link_to "More Info", event_contribution_path(@event, contribution), :class => "fancybox" %></li>
+                  <li id="<%= contribution.id %>" data-id="<%= @event.id %>"><%= contribution.yummly_recipe_name %><% if contribution.guest_id == nil %><div class="unclaimed" id="unclaimed-<%= contribution.id %>">Claim</div><% else %> claimed by <%= contribution.guest.full_name %> -<div class="claimed" id="claimed-<%= contribution.id %>">Unclaim</div><% end %><%= link_to "More Info", event_contribution_path(@event, contribution), :class => "fancybox" %></li>
                 <% end %>
               </ul>
           <% end %>
