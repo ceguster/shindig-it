@@ -55,8 +55,6 @@ class User < ActiveRecord::Base
 
     def send_welcome_mail
       @mail = UserMailer.welcome_email(self)
-      binding.pry
       @mail.deliver
-      binding.pry
     end
 end
