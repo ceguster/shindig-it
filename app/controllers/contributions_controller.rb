@@ -36,7 +36,6 @@ class ContributionsController < ApplicationController
   end
 
   def show
-
     @contribution = Contribution.find(params[:id])
   end
 
