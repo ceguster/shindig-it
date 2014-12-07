@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
     past_events
   end
 
+  private
     def send_welcome_mail
       @mail = UserMailer.welcome_email(self)
       @mail.deliver!
