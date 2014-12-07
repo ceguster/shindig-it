@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.2'
+
 #gems for fancybox
 gem 'fancybox-rails'
 #Json gem for Yummly API call
