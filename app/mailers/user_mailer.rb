@@ -8,8 +8,10 @@ class UserMailer < ActionMailer::Base
     mail(to: user.email, subject:"Welcome to ShindigIt!")
   end
 
-  def invitation_email(user)
+  def invitation_email(user, event, host)
     @user = user
+    @event = event
+    @host = host
     @url = 'shindigit.herokuapp.com'
     mail(to: user.email, subject: "You've been invited!")
   end

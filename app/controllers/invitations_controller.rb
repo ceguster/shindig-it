@@ -14,7 +14,7 @@ class InvitationsController < ApplicationController
     else
       @invitation = Invitation.create(event_id: @event.id, guest_email: @guest_email)
     end
-    UserMailer.invitation_email(@guest).deliver
+    UserMailer.invitation_email(@guest, @event, @event.host).deliver
   end
 
   def edit
