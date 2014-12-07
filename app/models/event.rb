@@ -29,4 +29,21 @@ class Event < ActiveRecord::Base
     Invitation.find_by(event_id: self.id, guest_id: @user.id)
   end
 
+  def formatted_time
+    @time = self.start_time
+    if @time.hour > 11
+      @ampm = "PM"
+      @hour = @time.hour - 12
+    else
+      @ampm = "AM"
+      @hour = @time.hour
+    end
+    if @time.min.to_s.length == 1
+      @minutes = "0#{@time.min}"
+    else
+      @minutes = "#{@time.min}"
+    end
+    "#{@hour}:#{@minutes} #{@ampm}"
+  end
+
 end

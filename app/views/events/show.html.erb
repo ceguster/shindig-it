@@ -9,7 +9,7 @@
     <% if @event.tagline %> <h3>"<%= @event.tagline %>"</h3><%end%><br>
 
     <h3>What? <%= @event.details %></h3><br>
-    <h3>When? <%= @event.date %>, at <%= @event.start_time %></h3><br>
+    <h3>When? <%= @event.date %>, at <%= @event.formatted_time %></h3><br>
     <h3>Where? <%= @event.location %></h3>
 
     <h4> <%= link_to "Edit event", edit_event_path(@event) %><br>
@@ -32,7 +32,7 @@
           <h4><%= k %></h4>
             <ul>
               <% v.each do |contribution| %>
-                <li><%= contribution.yummly_recipe_name %> - <% if contribution.guest_id == nil %><%= link_to("Claim", event_contribution_path(@event, contribution), method: "patch", remote: true) %><% end %></li>
+                <li id="<%= contribution.id %>"><%= contribution.yummly_recipe_name %><% if contribution.guest_id == nil %><div class="unclaimed-<%=contribution.id%>"><%= link_to("Claim", event_contribution_path(@event, contribution), method: "patch", remote: true) %></div><% else %><div class="claimed-<%=contribution.id%>"> claimed by <%= contribution.guest.full_name %> - <%= link_to("Unclaim", event_contribution_path(@event, contribution), method: "patch", remote: true) %></div><% end %></li>
               <% end %>
             </ul>
         <% end %>

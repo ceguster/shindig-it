@@ -35,12 +35,15 @@ class ContributionsController < ApplicationController
     end
   end
 
-  def edit 
-    
-  end
-
   def update
-
+    @user = current_user
+    @event = Event.find(params[:event_id])
+    @contribution = Contribution.find(params[:id])
+    if @contribution.guest_id == nil
+      @contribution.update(:guest_id => @user.id)
+    else 
+      @contribution.update(:guest_id => nil)
+    end
   end
 
   private
