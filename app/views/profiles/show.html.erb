@@ -20,7 +20,7 @@
 
     <h3>Your Invites </h3>
     <% if @user.pending_events.size > 0 %>
-      <h3> Pending </h3>
+      <h4> Pending </h4>
         <ul> 
         <% @user.pending_events.each do |event| %>
           <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user))%></li>
@@ -29,7 +29,7 @@
     <% end %>
 
     <% if @user.upcoming_events.size > 0 %>
-      <h3> Upcoming </h3>
+      <h4> Upcoming </h4>
       <ul> 
         <% @user.upcoming_events.each do |event| %>
           <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user))%></li>
@@ -38,7 +38,7 @@
     <% end %>
 
     <% if @user.past_events.size > 0 %>
-      <h3> Past </h3>
+      <h4> Past </h4>
       <ul> 
         <% @user.past_events.each do |event| %>
           <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> </li>

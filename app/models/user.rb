@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   def upcoming_events
     coming_soon = []
     self.invitations.each do |invite|
-      invite.event if invite.status == "attending" && invite.event.date >= Date.today
+      coming_soon << invite.event if invite.status != "pending" && invite.event.date >= Date.today
     end
     coming_soon
   end
@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   def past_events
     past_events = []
     self.invitations.each do |invite|
-      invite.event if invite.status == "attending" && invite.event.date < Date.today
+      past_events << invite.event if invite.status == "Attending" && invite.event.date < Date.today
     end
     past_events
   end

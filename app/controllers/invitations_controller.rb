@@ -17,6 +17,19 @@ class InvitationsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:event_id])
+    @invitation = Invitation.find(params[:id])
+    @user = @invitation.guest
+  end
+
+  def update
+    @event = Event.find(params[:event_id])
+    @invitation = Invitation.find(params[:id])
+    @user = @invitation.guest
+
+    @invitation.update(:status => params[:commit])
+    
+    redirect_to profile_path(@user)
   end
   
 end

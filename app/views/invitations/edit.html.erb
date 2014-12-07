@@ -1,0 +1,6 @@
+<h1> RSVP to <%= @event.name %> </h1>
+<%= form_for [@event, @invitation] do |f| %>
+  <%= f.submit "Attending" %>
+  <%= f.submit "Not Attending" %>
+  <%= f.submit "Maybe Attending" %>
+<% end %>
