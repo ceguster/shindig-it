@@ -74,4 +74,18 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #Setup for mailer
+  config.action_mailer.default_url_options = { host: 'shindigit.herokuapp.com'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: 'flatiron.shindigit@gmail.com',
+    password: ENV['email_password'],
+    domain: 'gmail.com'
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 end

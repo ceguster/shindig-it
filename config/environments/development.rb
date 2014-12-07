@@ -49,8 +49,6 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  #Because Heroku told me to.
-  config.assets.initialize_on_precompile = false
 
 
   # Raises error for missing translations
