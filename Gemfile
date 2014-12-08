@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
+#Carrierwave for profile image uploads
+gem 'carrierwave'
 #because heroku
 gem 'rails_12factor', group: :production
 #gems for fancybox
