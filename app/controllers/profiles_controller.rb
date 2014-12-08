@@ -24,6 +24,3 @@ end
 # u.avatar.current_path # => 'path/to/file.png'
 # u.avatar.identifier # => 'file.png'
 
-# file = File.open('example.jpg')
-# uploader = MyUploader.new
-# uploader.store!(file)
