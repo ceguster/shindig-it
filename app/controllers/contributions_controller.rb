@@ -11,6 +11,7 @@ class ContributionsController < ApplicationController
     else
       @event = Event.find(params[:event_id])
       @id = params[:contribution][:recipe_id]
+      @course = params[:contribution][:search_course]
       @recipe = Yummly.find(@id)
       @recipe_hsh = {}
       @recipe_hsh[:event_id] = params[:event_id]
@@ -25,6 +26,17 @@ class ContributionsController < ApplicationController
         @recipe_hsh[:yummly_course] = @recipe.attributes["course"].first
       else
         @recipe_hsh[:yummly_course] = "other"
+      end
+      if @course == ""
+        @recipe_hsh[:yummly_course] = "Other"
+      elsif @course.split(" ").first.downcase.strip == "main" || @course.split(" ").first.downcase.strip == "side"
+        @recipe_hsh[:yummly_course] = "Main Course"
+      elsif @course.split(" ").first.downcase.strip == "appetizer"
+        @recipe_hsh[:yummly_course] = "Appetizer"
+      elsif @course.split(" ").first.downcase.strip == "dessert"
+        @recipe_hsh[:yummly_course] = "Dessert"
+      else
+        @recipe_hsh[:yummly_course] = "Other"
       end
       if @recipe.attributes["cuisine"]
         @recipe_hsh[:yummly_cuisine_type] = @recipe.attributes["cuisine"].first

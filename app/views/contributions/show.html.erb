@@ -12,4 +12,9 @@
   <div style="width: 100%; margin: 15px; display: block; text-align:center;"> 
     <%= link_to "See Full Recipe", @contribution.yummly_source, :target => "_blank"%>
   </div>
+  <div>
+    <!-- if contribution is claimed already by someone other than current_user, show claimed but don't allow click -->
+    <!-- if contribution is claimed already by current_user then show unclaim, allow click, close fancybox and update even show page to now have claim option -->
+    <!-- if contribution is unclaimed then show claim option for user, allow click, close fancybox, update event show page to now have unclaim option -->
+  </div>
 </div>

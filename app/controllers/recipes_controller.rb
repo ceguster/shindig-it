@@ -4,9 +4,9 @@ class RecipesController < ApplicationController
 
   def index
     @event = Event.find(params[:event_id].to_i)
-    @course = params[:course]
-    @cuisine_type = params[:cuisine_type]
-    @main_ingredient = params[:main_ingredient]
+    @course = params[:course].split(" ").first
+    @cuisine_type = params[:cuisine_type].split(" ").join("+")
+    @main_ingredient = params[:main_ingredient].split(" ").join("+")
     @url = "http://api.yummly.com/v1/api/recipes?_app_id=#{ENV['yummly_application_id']}&_app_key=#{ENV['yummly_application_key']}&q=#{@main_ingredient}&allowedCuisine=cuisine%5Ecuisine-#{@cuisine_type}&allowedCourse=course%5Ecourse-#{@course}"
     html = open(@url).read()
     hsh = JSON.parse(html)
@@ -17,16 +17,18 @@ class RecipesController < ApplicationController
       if match["smallImageUrls"]
         recipe_hash[:image] = match["smallImageUrls"][0]
       else
-        recipe_hash[:image] = "brianne_on_a_seat.jpg"
+        recipe_hash[:image] = "no_image2.jpeg"
       end
       recipe_hash[:rating] = match["rating"]
       recipe_hash[:ingredients] = match["ingredients"].join(", ")
       recipe_hash[:event_id] = @event.id
+      recipe_hash[:search_course] = params[:course]
       recipe_hash
     end
   end
 
   def show
+    @course = params[:course]
     @event = Event.find(params[:event_id])
     @id = params[:id]
     @recipe = Yummly.find(@id)
@@ -38,10 +40,16 @@ class RecipesController < ApplicationController
     @recipe_hsh[:time] = @recipe.total_time
     @recipe_hsh[:source] = @recipe.json["source"]["sourceRecipeUrl"]
     @recipe_hsh[:id] = @id
-    if @recipe.attributes["course"]
-      @recipe_hsh[:course] = @recipe.attributes["course"].first
+    if @course == ""
+      @recipe_hsh[:course] = "Other"
+    elsif @course.split(" ").first.downcase.strip == "main" || @course.split(" ").first.downcase.strip == "side"
+      @recipe_hsh[:course] = "Main Course"
+    elsif @course.split(" ").first.downcase.strip == "appetizer"
+      @recipe_hsh[:course] = "Appetizer"
+    elsif @course.split(" ").first.downcase.strip == "dessert"
+      @recipe_hsh[:course] = "Dessert"
     else
-      @recipe_hsh[:course] = "other"
+      @recipe_hsh[:course] = "Other"
     end
     if @recipe.attributes["cuisine"]
       @recipe_hsh[:cuisine_type] = @recipe.attributes["cuisine"].first

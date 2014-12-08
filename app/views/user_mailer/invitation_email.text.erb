@@ -1,1 +1,15 @@
-invitation_email.text.erb
+<% if @user != nil %>
+  Hi, <%= @user.first_name %>!
+<% end %>
+===============================================
+ 
+You have been invited to <%= @event.name %>,
+hosted by <%= @host.full_name %>.
+ 
+<% if @user != nil %>
+  To RSVP, please go to your ShindigIt profile: <%= @url %>
+<% else%>
+  To RSVP, please go to ShindigIt to make an account: <%= @url %>
+<% end %>
+ 
+Thanks, and have a great day!

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   after_create :send_welcome_mail
   after_create :set_default_profile_image
+  after_create :update_invitations
 
   mount_uploader :avatar, AvatarUploader
 
@@ -66,4 +67,14 @@ class User < ActiveRecord::Base
       self.image = 'default_profile_photo.jpg'
       self.save
     end
+
+    def update_invitations
+      invites = Invitation.where('guest_email = ?', self.email)
+      if invites.count > 0
+        invites.each do |invite|
+          invite.update(:guest_id => self.id)
+        end
+      end
+    end
+
 end

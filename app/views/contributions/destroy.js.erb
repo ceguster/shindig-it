@@ -1,4 +1,4 @@
-if($('.contribution').length > 1){
+if($('.contribution-<%= @contribution_id %>').parents('ul').children().length > 1){
   $('.contribution-<%= @contribution_id %>').remove();
 }else{
   $('.contribution-<%= @contribution_id %>').parents('div').remove();

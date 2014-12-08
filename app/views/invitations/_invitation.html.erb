@@ -1,1 +1,5 @@
-<li><%= @invitation.guest.full_name %></li>
+<% if @invitation.guest_id == nil %>
+  <li><%= @invitation.guest_email %></li>
+<% else %>
+  <li><%= @invitation.guest.full_name %></li>
+<% end %>

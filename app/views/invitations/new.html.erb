@@ -16,7 +16,11 @@
     <div>
       <ul class="invites">
       <% @event.invitations.each do |invite| %>
-      <li><%= invite.guest.full_name %></li>
+        <% if invite.guest_id == nil %>
+          <li><%= invite.guest_email %></li>
+        <% else %>
+          <li><%= invite.guest.full_name %></li>
+        <% end %>
       <% end %>
       </ul>
     </div>
