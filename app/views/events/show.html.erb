@@ -19,7 +19,7 @@
       <h3>Where? <%= @event.location %></h3>
 
       <h4> <%= link_to "Edit event", edit_event_path(@event) %><br><br>
-      <h4> <%= button_to "Cancel event", event_path(@event), method: "delete", data: { confirm: "Are you sure you want to cancel this event?" } %><br><br>
+      <h4> <% if current_user == @host %> <%= button_to "Cancel event", event_path(@event), method: "delete", data: { confirm: "Are you sure you want to cancel this event?" } %> <% end %> <br><br>
 
       <% if @event.invitations.size != 0 %>
         <h3>Guest List</h3>
@@ -28,9 +28,9 @@
             <li><%= invite.guest.full_name %> - <%= invite.status %></li>
           <% end %>
         </ul>
-        <%= link_to "Invite more guests to #{@event.name}", new_event_invitation_path(@event) %>
+        <% if current_user == @host %> <%= link_to "Invite more guests to #{@event.name}", new_event_invitation_path(@event) %><%end%>
       <% else %>
-        <%= link_to "Invite guests to #{@event.name}", new_event_invitation_path(@event) %>
+        <% if current_user == @host %> <%= link_to "Invite guests to #{@event.name}", new_event_invitation_path(@event) %> <%end%>
       <% end %>
       <br> 
       <% if @event.contributions.size != 0 %>
