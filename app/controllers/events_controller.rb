@@ -6,9 +6,13 @@ class EventsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @event = Event.find(params[:id])
     @host = @event.host
     @menu = @event.menu
+    if !@user.invited?(@event) && @user != @host
+      redirect_to profile_path(@user), notice: "You can't access events you're not invited to"
+    end
   end
 
   def new

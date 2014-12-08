@@ -3,6 +3,10 @@ class ProfilesController < ApplicationController
 
   def show
     @user = current_user
+    @profile = User.find(params[:id])
+    if @user != @profile
+      redirect_to profile_path(@user)
+    end
   end
 
   def update
@@ -16,11 +20,3 @@ class ProfilesController < ApplicationController
   end
   
 end
-# u = User.new
-# u.avatar = params[:file] # Assign a file like this, or
-# u.avatar = File.open('somewhere') # like this
-# u.save!
-# u.avatar.url # => '/url/to/file.png'
-# u.avatar.current_path # => 'path/to/file.png'
-# u.avatar.identifier # => 'file.png'
-
