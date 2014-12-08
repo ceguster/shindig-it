@@ -7,11 +7,10 @@ class ProfilesController < ApplicationController
 
   def update
     @user = current_user
-    binding.pry
-    @image = params["/profiles/#{@user.id}"][:image]
-    @user.image = @image.original_filename
-    @user.avatar = @image
-    @user.save
+    file = params["/profiles/#{@user.id}"][:file].tempfile
+    filename = params["/profiles/#{@user.id}"][:file].original_filename
+    @user.avatar = File.open(file)
+    @user.save!
 
     redirect_to profile_path(@user)
   end
