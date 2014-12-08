@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   after_create :send_welcome_mail
   after_create :set_default_profile_image
 
+  mount_uploader :avatar, AvatarUploader
+  
+
  #HOST METHODS
  has_many :events, :foreign_key => 'host_id'
 
