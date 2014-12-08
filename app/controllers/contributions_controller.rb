@@ -50,6 +50,12 @@ class ContributionsController < ApplicationController
     end
   end
 
+  def destroy
+    @contribution = Contribution.find(params[:id])
+    @contribution_id = params[:id]
+    @contribution.destroy
+  end
+
   private
     def contribution_params
       params.require(:contribution).permit(:event_id, :yummly_recipe_name, :yummly_id, :yummly_course, :yummly_cuisine_type, :yummly_ingredients, :yummly_large_image, :yummly_num_servings, :yummly_time, :yummly_source)

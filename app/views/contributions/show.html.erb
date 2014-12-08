@@ -1,15 +1,15 @@
-  <div>
+<div style="width: 700px; height: 400px; clear:both;">
+  <div style="width: 100%; margin: 15px; display: block; text-align:center;">
     <%= image_tag(@contribution.yummly_large_image)%>
   </div>
-  <div>
+  <div style="width: 100%; margin: 15px; display: block;">
     <h2><%= @contribution.yummly_recipe_name %></h2>
     <h4>Number of Servings: <%= @contribution.yummly_num_servings %></h4>
     <h4>Total Time: <%= @contribution.yummly_time %></h4>
     <h4> Ingredients: </h4>
-    <ul>
-    <%= @contribution.yummly_ingredients %>
-    </ul>
+    <h6> - <%= @contribution.yummly_ingredients %></h6>
   </div>
-  <div> 
+  <div style="width: 100%; margin: 15px; display: block; text-align:center;"> 
     <%= link_to "See Full Recipe", @contribution.yummly_source, :target => "_blank"%>
   </div>
+</div>

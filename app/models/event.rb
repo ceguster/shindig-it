@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
   has_many   :contributions
   has_many   :guests, :through => :invitations
 
+  after_destroy :delete_invitations, :delete_contributions
+
   def menu
    menu = {}
    menu_courses = self.contributions.collect do |c|
@@ -45,5 +47,22 @@ class Event < ActiveRecord::Base
     end
     "#{@hour}:#{@minutes} #{@ampm}"
   end
+
+  private
+    def delete_invitations
+      if self.invitations.count > 0
+        self.invitations.each do |invite|
+          invite.destroy
+        end
+      end
+    end
+
+    def delete_contributions
+      if self.contributions.count > 0
+        self.contributions.each do |c|
+          c.destroy
+        end
+      end
+    end
 
 end

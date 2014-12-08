@@ -38,6 +38,14 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    @user = @event.host
+    @event.destroy
+
+    redirect_to profile_path(@user)
+  end
+
   private
     def event_params
       params.require(:event).permit(:name, :details, :tagline, :location, :date, :start_time)
