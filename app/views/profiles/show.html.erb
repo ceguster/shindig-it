@@ -6,7 +6,15 @@
     <section class="wrapper">
       <div class="details">
         <h1> Hi <%=@user.first_name %>! </h1>
-        <%= image_tag(@user.image, size: "90") %>
+        <div class="profile-image">
+        <%= image_tag(@user.image, size: "120") %>
+        </div>
+        <div class="change-image-form">
+        <%= form_for profile_path(@user), :method => "patch" do |f| %>
+        <%= f.file_field :image %>
+        <%= f.submit "Update Profile Picture" %>
+        <% end %>
+        </div>
         <h3><%= link_to "Make a new event!", new_event_path %></h3>
       </div>
       <div class="col_left">

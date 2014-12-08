@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   after_create :send_welcome_mail
+  after_create :set_default_profile_image
 
  #HOST METHODS
  has_many :events, :foreign_key => 'host_id'
@@ -56,5 +57,10 @@ class User < ActiveRecord::Base
   private
     def send_welcome_mail
       UserMailer.welcome_email(self).deliver
+    end
+
+    def set_default_profile_image
+      self.image = 'default_profile_photo.jpg'
+      self.save
     end
 end
