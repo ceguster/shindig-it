@@ -25,7 +25,11 @@
         <h3>Guest List</h3>
         <ul>
           <% @event.invitations.each do |invite| %>
-            <li><%= invite.guest.full_name %> - <%= invite.status %></li>
+            <% if invite.guest_id == nil %>
+              <li><%= invite.guest_email %> - <%= invite.status %></li>
+            <% else %>
+              <li><%= invite.guest.full_name %> - <%= invite.status %></li>
+            <% end %>
           <% end %>
         </ul>
         <% if current_user == @host %> <%= link_to "Invite more guests to #{@event.name}", new_event_invitation_path(@event) %><%end%>
