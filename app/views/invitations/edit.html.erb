@@ -1,6 +1,6 @@
 <div style="width:450px; height:150px; text-align:center;">
   <h2> RSVP to <%= @event.name %> </h2>
-  <%= form_for [@event, @invitation] do |f| %>
+  <%= form_for [@event, @invitation], :remote => true do |f| %>
     <%= f.submit "Attending" %>
     <%= f.submit "Not Attending" %>
     <%= f.submit "Maybe Attending" %>
