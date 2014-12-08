@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
 
   def index
     @event = Event.find(params[:event_id].to_i)
-    @course = params[:course]
+    @course = params[:course].split(" ").first
     @cuisine_type = params[:cuisine_type]
     @main_ingredient = params[:main_ingredient]
     @url = "http://api.yummly.com/v1/api/recipes?_app_id=#{ENV['yummly_application_id']}&_app_key=#{ENV['yummly_application_key']}&q=#{@main_ingredient}&allowedCuisine=cuisine%5Ecuisine-#{@cuisine_type}&allowedCourse=course%5Ecourse-#{@course}"
@@ -40,7 +40,9 @@ class RecipesController < ApplicationController
     @recipe_hsh[:time] = @recipe.total_time
     @recipe_hsh[:source] = @recipe.json["source"]["sourceRecipeUrl"]
     @recipe_hsh[:id] = @id
-    if @course.split(" ").first.downcase.strip == "main" || @course.split(" ").first.downcase.strip == "side"
+    if @course == ""
+      @recipe_hsh[:course] = "Other"
+    elsif @course.split(" ").first.downcase.strip == "main" || @course.split(" ").first.downcase.strip == "side"
       @recipe_hsh[:course] = "Main Course"
     elsif @course.split(" ").first.downcase.strip == "appetizer"
       @recipe_hsh[:course] = "Appetizer"
