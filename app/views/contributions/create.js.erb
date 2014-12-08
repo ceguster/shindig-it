@@ -1,1 +1,6 @@
 $.fancybox.close();
+$('#course').val("");
+$('#cuisine_type').val("");
+$('#main_ingredient').val("");
+$('body').scrollTop(0);
+$('.menu-notice').append("<h6>You have successfully added <%= @contribution.yummly_recipe_name %> to your menu</h6>")

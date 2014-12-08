@@ -1,0 +1,4 @@
+$.fancybox.close();
+alert('WTF YO');
+$('.event-<%= @event.id %>').children('.rsvp-status').remove();
+$('.event-<%= @event.id %>').append("<%= @invitation.status %>");

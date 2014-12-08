@@ -5,7 +5,7 @@
       <%= link_to "Return to profile", profile_path(current_user.id) %> | 
       <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
     </header>
-    <h1> Create Your Menu </h1><br>
+    <div style="display:inline-block;"><h1> Create Your Menu </h1></div><div class="menu-notice"  style="display:inline-block; float:right; width: 250px;"> <%= @notice %> </div><br>
 
     <%= form_tag("/recipes", method: :get, remote: true) do %>
     <%= hidden_field_tag :event_id, @event.id %>

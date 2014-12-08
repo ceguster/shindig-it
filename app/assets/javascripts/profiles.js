@@ -4,5 +4,5 @@ $(document).ready(function(){
   $('.profile-image').on('dblclick', function(){
     $('.change-image-form').toggle();
   });
-
+  
 });
