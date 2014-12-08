@@ -5,8 +5,8 @@ class RecipesController < ApplicationController
   def index
     @event = Event.find(params[:event_id].to_i)
     @course = params[:course].split(" ").first
-    @cuisine_type = params[:cuisine_type]
-    @main_ingredient = params[:main_ingredient]
+    @cuisine_type = params[:cuisine_type].split(" ").join("+")
+    @main_ingredient = params[:main_ingredient].split(" ").join("+")
     @url = "http://api.yummly.com/v1/api/recipes?_app_id=#{ENV['yummly_application_id']}&_app_key=#{ENV['yummly_application_key']}&q=#{@main_ingredient}&allowedCuisine=cuisine%5Ecuisine-#{@cuisine_type}&allowedCourse=course%5Ecourse-#{@course}"
     html = open(@url).read()
     hsh = JSON.parse(html)
@@ -17,7 +17,7 @@ class RecipesController < ApplicationController
       if match["smallImageUrls"]
         recipe_hash[:image] = match["smallImageUrls"][0]
       else
-        recipe_hash[:image] = "brianne_on_a_seat.jpg"
+        recipe_hash[:image] = "no_image2.jpeg"
       end
       recipe_hash[:rating] = match["rating"]
       recipe_hash[:ingredients] = match["ingredients"].join(", ")

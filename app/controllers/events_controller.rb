@@ -8,6 +8,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @host = @event.host
+    @menu = @event.menu
   end
 
   def new

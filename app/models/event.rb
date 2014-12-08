@@ -9,19 +9,9 @@ class Event < ActiveRecord::Base
 
   def menu
    menu = {}
-   menu_courses = self.contributions.collect do |c|
-      c.yummly_course
-    end
-    menu_courses = menu_courses.uniq
-    menu_courses.each do |mc|
-      menu[mc] = []
-    end
     self.contributions.each do |c|
-      menu.each do |k, v|
-        if c.yummly_course == k
-          menu[k] << c
-        end
-      end
+      menu[c.yummly_course] ||= []
+      menu[c.yummly_course] << c
     end
     menu
   end
