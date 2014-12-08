@@ -9,9 +9,10 @@
   </div>
   <div>
     <%= image_tag(recipe[:image], :size => "90") %><br>
-    <%= link_to "More Info", "#{recipe_path(recipe[:id])}?event_id=#{recipe[:event_id]}", :class => "fancybox"%>
+    <%= link_to "More Info", "#{recipe_path(recipe[:id])}?event_id=#{recipe[:event_id]}&course=#{recipe[:search_course]}", :class => "fancybox"%>
     <%= form_for [@event, Contribution.new], remote: true do |f| %>
     <%= f.hidden_field :recipe_id, :value => recipe[:id] %>
+    <%= f.hidden_field :search_course, :value => recipe[:search_course] %>
     <%= f.submit "Add to Menu" %>
     <% end %>
   </div>

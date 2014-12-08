@@ -22,11 +22,13 @@ class RecipesController < ApplicationController
       recipe_hash[:rating] = match["rating"]
       recipe_hash[:ingredients] = match["ingredients"].join(", ")
       recipe_hash[:event_id] = @event.id
+      recipe_hash[:search_course] = params[:course]
       recipe_hash
     end
   end
 
   def show
+    @course = params[:course]
     @event = Event.find(params[:event_id])
     @id = params[:id]
     @recipe = Yummly.find(@id)
@@ -38,10 +40,14 @@ class RecipesController < ApplicationController
     @recipe_hsh[:time] = @recipe.total_time
     @recipe_hsh[:source] = @recipe.json["source"]["sourceRecipeUrl"]
     @recipe_hsh[:id] = @id
-    if @recipe.attributes["course"]
-      @recipe_hsh[:course] = @recipe.attributes["course"].first
+    if @course.split(" ").first.downcase.strip == "main" || @course.split(" ").first.downcase.strip == "side"
+      @recipe_hsh[:course] = "Main Course"
+    elsif @course.split(" ").first.downcase.strip == "appetizer"
+      @recipe_hsh[:course] = "Appetizer"
+    elsif @course.split(" ").first.downcase.strip == "dessert"
+      @recipe_hsh[:course] = "Dessert"
     else
-      @recipe_hsh[:course] = "other"
+      @recipe_hsh[:course] = "Other"
     end
     if @recipe.attributes["cuisine"]
       @recipe_hsh[:cuisine_type] = @recipe.attributes["cuisine"].first
