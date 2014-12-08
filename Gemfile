@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.1.2'
 
+#Fog for image storage with S3 
+gem 'fog'
 #Carrierwave for profile image uploads
 gem 'carrierwave'
 #because heroku
