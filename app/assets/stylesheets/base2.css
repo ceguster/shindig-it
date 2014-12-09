@@ -96,12 +96,21 @@ p.oblique{
 
 .invite-list{
   text-align: center;
-  /*border: solid 1px;*/
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   width: 500px;
 }
 
 .invitations{
   text-align: center;
+}
+
+.invite-font{
+  font-weight: 800;
+  font-size 200%: 
 }
 
 
