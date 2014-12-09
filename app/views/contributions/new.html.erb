@@ -1,32 +1,37 @@
-<header>
-  <h5><%= link_to "Return to #{@event.name}", event_path(@event) %> | 
-  <%= link_to "Return to profile", profile_path(current_user.id) %> | 
-  <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
-</header>
-<div style="display:inline-block;"><h1> Create Your Menu </h1></div><div class="menu-notice"  style="display:inline-block; float:right; width: 250px;"> <%= @notice %> </div><br>
-
-<%= form_tag("/recipes", method: :get, remote: true) do %>
-<%= hidden_field_tag :event_id, @event.id %>
-<%= label_tag(:course) %>
-<%= text_field_tag(:course, nil, placeholder: "e.g. main, appetizer, dessert") %><br>
-<%= label_tag(:cuisine_type) %>
-<%= text_field_tag(:cuisine_type, nil, placeholder: "e.g. Italian, French") %><br>
-<%= label_tag(:main_ingredient) %>
-<%= text_field_tag(:main_ingredient, nil, placeholder: "e.g. Chicken, Beef") %><br>
-<h4> Allergy Restrictions </h4>
-<%= label_tag(:allergy, "Gluten") %>
-<%= radio_button_tag(:allergy, "Gluten") %>
-<%= label_tag(:allergy, "Peanuts") %>
-<%= radio_button_tag(:allergy,"Peanuts") %>
-<%= label_tag(:allergy, "Seafood") %>
-<%= radio_button_tag(:allergy, "Seafood") %>
-<%= label_tag(:allergy, "Soy") %>
-<%= radio_button_tag(:allergy, "Soy") %>
-<%= label_tag(:allergy, "Dairy") %>
-<%= radio_button_tag(:allergy, "Dairy") %>
-<%= label_tag(:allergy, "None") %>
-<%= radio_button_tag(:allergy, "None", "default") %><br>
-<%= submit_tag "Find A Recipe" %>
-<% end %>
-
-<div class="recipes"></div>
+<section id="create-menu" class="clearfix">
+  <div class="links">
+    <h5><%= link_to "Return to #{@event.name}", event_path(@event) %> | 
+    <%= link_to "Return to profile", profile_path(current_user.id) %> | 
+    <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
+  </div>
+  <div class="heading-notice">
+    <div><h1> Create Your Menu </h1></div>
+    <div class="menu-notice"> <%= @notice %> </div><br>
+  </div>
+  <div class="menu-form">
+    <%= form_tag("/recipes", method: :get, remote: true) do %>
+      <%= hidden_field_tag :event_id, @event.id %>
+      <%= label_tag(:course) %>
+      <%= text_field_tag :course, nil, placeholder: "e.g. main, appetizer, dessert", value: "main" %>
+      <%= label_tag(:cuisine_type) %>
+      <%= text_field_tag :cuisine_type, nil, placeholder: "e.g. Italian, French", value: "french" %>
+      <%= label_tag(:main_ingredient) %>
+      <%= text_field_tag :main_ingredient, nil, placeholder: "e.g. Chicken, Beef", value: "beef" %><br>
+      <h4> Allergy Restrictions </h4>
+      <%= label_tag(:allergy, "Gluten") %>
+      <%= radio_button_tag(:allergy, "Gluten") %>
+      <%= label_tag(:allergy, "Peanuts") %>
+      <%= radio_button_tag(:allergy,"Peanuts") %>
+      <%= label_tag(:allergy, "Seafood") %>
+      <%= radio_button_tag(:allergy, "Seafood") %>
+      <%= label_tag(:allergy, "Soy") %>
+      <%= radio_button_tag(:allergy, "Soy") %>
+      <%= label_tag(:allergy, "Dairy") %>
+      <%= radio_button_tag(:allergy, "Dairy") %>
+      <%= label_tag(:allergy, "None") %>
+      <%= radio_button_tag(:allergy, "None", "default") %><br>
+      <%= submit_tag "Find A Recipe" %>
+    <% end %>
+  </div>
+  <div class="recipes"></div>
+</section
