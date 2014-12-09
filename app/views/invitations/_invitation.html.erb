@@ -1,5 +1,9 @@
-<% if @invitation.guest_id == nil %>
-  <li><%= @invitation.guest_email %></li>
+<% if !@found %>
+  <% if @invitation.guest_id == nil %>
+    <li><%= @invitation.guest_email %></li>
+  <% else %>
+    <li><%= @invitation.guest.full_name %></li>
+  <% end %>
 <% else %>
-  <li><%= @invitation.guest.full_name %></li>
+  <div class="notice"></ul><h5>You can only invite a guest once.</h5></div>
 <% end %>

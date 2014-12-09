@@ -1,10 +1,5 @@
 <html>
   <body>
-    <script type="text/javascript">
-      $(document).ready(function() {
-          $(".fancybox").fancybox();
-      });
-    </script>
     <header>
       <h5><%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
     </header>
@@ -42,7 +37,7 @@
           <h4> Pending </h4>
             <ul> 
             <% @user.pending_events.each do |event| %>
-              <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%></li>
+              <li class="event-<%= event.id %>"><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%> - <div class="rsvp-status">Your RSVP: <%= event.event_invite(@user).status %></div></li>
             <% end %>
           </ul>
         <% end %>
@@ -51,7 +46,7 @@
           <h4> Upcoming </h4>
           <ul> 
             <% @user.upcoming_events.each do |event| %>
-              <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> - <%= link_to "Change RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%></li>
+              <li class="event-<%= event.id %>"><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "Change RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%> - <div class="rsvp-status">Your RSVP: <%= event.event_invite(@user).status %></div></li>
             <% end %>
           </ul>
         <% end %>
@@ -69,5 +64,10 @@
         <p>Made by Chelsea Guster and Brianne King</p>
       </footer>
     </section>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $(".fancybox").fancybox();
+      });
+    </script>
   </body>
 </html>

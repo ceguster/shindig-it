@@ -59,6 +59,11 @@ class User < ActiveRecord::Base
     past_events
   end
 
+  def invited?(event)
+    @event = event
+    Invitation.find_by(guest_id: self.id, event_id: @event.id) == nil ? false : true
+  end
+
   private
     def send_welcome_mail
       UserMailer.welcome_email(self).deliver

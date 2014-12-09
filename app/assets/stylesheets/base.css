@@ -1,3 +1,52 @@
+.homepage{
+  width: 450px;
+  height:225px;
+  background-color: rgba(255,255,255,0.65);
+  text-align: center;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.login{
+  width: 450px;
+  height:420px;
+  background-color: rgba(255,255,255,0.75);
+  text-align: center;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.signup{
+  width: 450px;
+  height: 475px;
+  background-color: rgba(255,255,255,0.75);
+  text-align: center;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.forgot{
+  width: 450px;
+  height: 220px;
+  background-color: rgba(255,255,255,0.75);
+  text-align: center;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
 .wrapper{
   clear: both;
   width: 750px;

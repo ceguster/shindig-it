@@ -9,28 +9,29 @@ class InvitationsController < ApplicationController
     @guest_email = params[:invitation][:guest_email]
     @event = Event.find(params[:event_id])
     @guest = User.find_by(:email => @guest_email)
-    if @guest
-      @invitation = Invitation.create(event_id: @event.id, guest_id: @guest.id, guest_email: @guest_email)
-    else
-      @invitation = Invitation.create(event_id: @event.id, guest_email: @guest_email)
+    @found = Invitation.find_by(event_id: @event.id, guest_email: @guest_email)
+    if !@found
+      if @guest
+        @invitation = Invitation.create(event_id: @event.id, guest_id: @guest.id, guest_email: @guest_email)
+      else
+        @invitation = Invitation.create(event_id: @event.id, guest_email: @guest_email)
+      end
+      UserMailer.invitation_email(@guest_email, @event, @event.host).deliver
     end
-    UserMailer.invitation_email(@guest_email, @event, @event.host).deliver
   end
 
   def edit
     @event = Event.find(params[:event_id])
     @invitation = Invitation.find(params[:id])
     @user = @invitation.guest
+    render layout: false
   end
 
   def update
     @event = Event.find(params[:event_id])
+    @user = current_user
     @invitation = Invitation.find(params[:id])
-    @user = @invitation.guest
-
     @invitation.update(:status => params[:commit])
-    
-    redirect_to profile_path(@user)
   end
   
 end

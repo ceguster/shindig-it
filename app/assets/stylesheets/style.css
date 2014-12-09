@@ -14,7 +14,11 @@ html {
 }
 body {
   margin: 0;
-  /*background: url('renoir-luncheon.jpg');*/
+  background: url('renoir-luncheon-of-the-boating-party.jpg');
+  background-size:cover;
+  background-repeat:vertical;
+  text-align: center;
+  vertical-align: middle;
 }
 article,
 aside,

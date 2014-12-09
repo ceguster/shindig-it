@@ -45,6 +45,7 @@ class ContributionsController < ApplicationController
       end
       @contribution = Contribution.create(@recipe_hsh)
     end
+    @notice = "#{@contribution.yummly_recipe_name} has been added to your menu."
   end
 
   def show
