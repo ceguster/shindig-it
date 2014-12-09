@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  mount_uploader :avatar, AvatarUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -8,7 +9,7 @@ class User < ActiveRecord::Base
   after_create :set_default_profile_image
   after_create :update_invitations
 
-  mount_uploader :avatar, AvatarUploader
+  
 
 
  #HOST METHODS
@@ -75,6 +76,10 @@ class User < ActiveRecord::Base
           invite.update(:guest_id => self.id)
         end
       end
+    end
+
+    def user_params
+      params.require(:user).permit(:avatar)
     end
 
 end

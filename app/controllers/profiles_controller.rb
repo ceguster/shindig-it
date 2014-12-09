@@ -6,12 +6,15 @@ class ProfilesController < ApplicationController
   end
 
   def update
+
     @user = current_user
-    @user.avatar = params.require(:profile).permit(:picture)
-    @user.save!
-    binding.pry
+    @user.avatar = params["/profiles/#{@user.id}"][:avatar]
+    @user.save
+
     redirect_to profile_path(@user)
   end
+
+
   
 end
 
