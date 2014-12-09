@@ -9,9 +9,6 @@ class User < ActiveRecord::Base
   after_create :set_default_profile_image
   after_create :update_invitations
 
-  
-
-
  #HOST METHODS
  has_many :events, :foreign_key => 'host_id'
 

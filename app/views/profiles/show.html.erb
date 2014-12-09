@@ -1,73 +1,65 @@
-<html>
-  <body>
-    <header>
-      <h5><%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
-    </header>
-    <section class="wrapper">
-      <div class="details">
-        <h1> Hi <%=@user.first_name %>! </h1>
-        <div class="profile-image">
-        <%= image_tag(@user.avatar.url, size: "120") %>
-        </div>
-        <%= form_for profile_path(@user), :method => 'patch' do |f| %>
-          <div class="change-image-form">
-          <%= f.file_field :avatar %>
-          <%= f.submit "Update Profile Image" %>
-          </div>
+<section id="profile-wrapper" class="clearfix">
+  <div class="links">
+    <h5><%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
+  </div>
+  <div class="profile">
+    <h1> Hi <%=@user.first_name %>! </h1>
+    <div class="profile-image">
+    <%= image_tag(@user.avatar.url, size: "120") %>
+    </div>
+    <div class="change-image-form">
+    <%= form_for profile_path(@user), :method => 'patch' do |f| %>
+      <%= f.file_field :avatar %>
+      <%= f.submit "Update Profile Image" %>
+    <% end %>
+    </div>
+    <h3><%= link_to "Make a new event!", new_event_path %></h3>
+  </div>
+  <div class="hosted">
+    <h3>Your Hosted Events </h3>
+    <% if @user.hosted_events.size == 0 %>
+      <h4> You have no hosted events! </h4>
+    <% else %>
+      <ul> 
+        <% @user.hosted_events.each do |event| %>
+          <li><%= link_to "#{event.name}", event_path(event) %></li>
         <% end %>
-
-        <h3><%= link_to "Make a new event!", new_event_path %></h3>
-      </div>
-
-      <div class="col_left">
-      <h3>Your Hosted Events </h3>
-        <% if @user.hosted_events.size == 0 %>
-          <h4> You have no hosted events! </h4>
-        <% else %>
-          <ul> 
-            <% @user.hosted_events.each do |event| %>
-              <li><%= link_to "#{event.name}", event_path(event) %></li>
-            <% end %>
-          </ul>
+      </ul>
+    <% end %>
+  </div>
+  <div class="invited">
+    <h3>Your Invites </h3>
+    <% if @user.pending_events.size > 0 %>
+      <h4> Pending </h4>
+        <ul> 
+        <% @user.pending_events.each do |event| %>
+          <li class="event-<%= event.id %>"><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%> - <div class="rsvp-status">Your RSVP: <%= event.event_invite(@user).status %></div></li>
         <% end %>
-      </div>
-      <div class="col_right">
-        <h3>Your Invites </h3>
-        <% if @user.pending_events.size > 0 %>
-          <h4> Pending </h4>
-            <ul> 
-            <% @user.pending_events.each do |event| %>
-              <li class="event-<%= event.id %>"><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%> - <div class="rsvp-status">Your RSVP: <%= event.event_invite(@user).status %></div></li>
-            <% end %>
-          </ul>
+      </ul>
+    <% end %>
+    <% if @user.upcoming_events.size > 0 %>
+      <h4> Upcoming </h4>
+      <ul> 
+        <% @user.upcoming_events.each do |event| %>
+          <li class="event-<%= event.id %>"><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "Change RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%> - <div class="rsvp-status">Your RSVP: <%= event.event_invite(@user).status %></div></li>
         <% end %>
-
-        <% if @user.upcoming_events.size > 0 %>
-          <h4> Upcoming </h4>
-          <ul> 
-            <% @user.upcoming_events.each do |event| %>
-              <li class="event-<%= event.id %>"><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "Change RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%> - <div class="rsvp-status">Your RSVP: <%= event.event_invite(@user).status %></div></li>
-            <% end %>
-          </ul>
+      </ul>
+    <% end %>
+    <% if @user.past_events.size > 0 %>
+      <h4> Past </h4>
+      <ul> 
+        <% @user.past_events.each do |event| %>
+          <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> </li>
         <% end %>
-
-        <% if @user.past_events.size > 0 %>
-          <h4> Past </h4>
-          <ul> 
-            <% @user.past_events.each do |event| %>
-              <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> </li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
-      <footer>
-        <p>Made by Chelsea Guster and Brianne King</p>
-      </footer>
-    </section>
-    <script type="text/javascript">
-      $(document).ready(function() {
-          $(".fancybox").fancybox();
-      });
-    </script>
-  </body>
-</html>
+      </ul>
+    <% end %>
+  </div>
+<section id=".made-footer" class="clearfix">
+  <p>Made by Chelsea Guster and Brianne King</p>
+</section>
+</section>
+<script type="text/javascript">
+  $(document).ready(function() {
+      $(".fancybox").fancybox();
+  });
+</script>
