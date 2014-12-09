@@ -4,10 +4,23 @@ class RecipesController < ApplicationController
 
   def index
     @event = Event.find(params[:event_id].to_i)
-    @course = params[:course].split(" ").first
-    @cuisine_type = params[:cuisine_type].split(" ").join("+")
-    @main_ingredient = params[:main_ingredient].split(" ").join("+")
-    @url = "http://api.yummly.com/v1/api/recipes?_app_id=#{ENV['yummly_application_id']}&_app_key=#{ENV['yummly_application_key']}&q=#{@main_ingredient}&allowedCuisine=cuisine%5Ecuisine-#{@cuisine_type}&allowedCourse=course%5Ecourse-#{@course}"
+    @course = params[:course].strip.split(" ").first
+    @cuisine_type = params[:cuisine_type].strip.split(" ").join("+")
+    @main_ingredient = params[:main_ingredient].strip.split(" ").join("+")
+    if params[:allergy] == "Gluten"
+      @allergy = "&allowedAllergy[]=393%5EGluten-Free"
+    elsif params[:allergy] == "Peanuts"
+      @allergy = "&allowedAllergy[]=394%5EPeanut-Free" 
+    elsif params[:allergy] == "Seafood"
+      @allergy = "&allowedAllergy[]=398%5ESeafood-Free"
+    elsif params[:allergy] == "Soy"
+      @allergy = "&allowedAllergy[]=400%5ESoy-Free" 
+    elsif params[:allergy] == "Dairy"
+      @allergy = "&allowedAllergy[]=396%5EDairy-Free"
+    elsif params[:allergy] == "None"
+      @allergy = ""
+    end
+    @url = "http://api.yummly.com/v1/api/recipes?_app_id=#{ENV['yummly_application_id']}&_app_key=#{ENV['yummly_application_key']}&q=#{@main_ingredient}&allowedCuisine[]=cuisine%5Ecuisine-#{@cuisine_type}&allowedCourse[]=course%5Ecourse-#{@course}#{@allergy}&maxResult=20&start=0"
     html = open(@url).read()
     hsh = JSON.parse(html)
     @recipes = hsh["matches"].collect do |match|

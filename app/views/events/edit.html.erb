@@ -18,7 +18,7 @@
     <%= f.label :date %><br>
     <%= f.date_field :date, :value => @event.date%><br>
     <%= f.label :start_time %><br>
-    <%= f.time_field :start_time, :value => @event.start_time, :type => "time" %><br>
+    <%= f.time_field :start_time, :placeholder => @event.start_time %><br>
     <%= f.submit "PARTY TIME! EXCELLENT!" %>
     <% end %>
   </body>

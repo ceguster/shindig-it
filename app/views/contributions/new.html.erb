@@ -15,6 +15,19 @@
     <%= text_field_tag(:cuisine_type, nil, placeholder: "e.g. Italian, French") %><br>
     <%= label_tag(:main_ingredient) %>
     <%= text_field_tag(:main_ingredient, nil, placeholder: "e.g. Chicken, Beef") %><br>
+    <h4> Allergy Restrictions </h4>
+    <%= label_tag(:allergy, "Gluten") %>
+    <%= radio_button_tag(:allergy, "Gluten") %>
+    <%= label_tag(:allergy, "Peanuts") %>
+    <%= radio_button_tag(:allergy,"Peanuts") %>
+    <%= label_tag(:allergy, "Seafood") %>
+    <%= radio_button_tag(:allergy, "Seafood") %>
+    <%= label_tag(:allergy, "Soy") %>
+    <%= radio_button_tag(:allergy, "Soy") %>
+    <%= label_tag(:allergy, "Dairy") %>
+    <%= radio_button_tag(:allergy, "Dairy") %>
+    <%= label_tag(:allergy, "None") %>
+    <%= radio_button_tag(:allergy, "None", "default") %><br>
     <%= submit_tag "Find A Recipe" %>
     <% end %>
 
