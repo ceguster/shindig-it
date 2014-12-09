@@ -1,26 +1,35 @@
-<html>
-  <body>
-    <header>
-      <h5><%= link_to "Return to #{@event.name}", event_path(@event) %> | 
-      <%= link_to "Return to profile", profile_path(current_user.id) %> | 
-      <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
-    </header>
-    <h1> Invite Guests to <%= @event.name %>! </h1>
+<div class="header-right">
+  <header>
+    <h5><%= link_to "Return to #{@event.name}", event_path(@event) %> | 
+    <%= link_to "Return to profile", profile_path(current_user.id) %> | 
+    <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
+  </header>
+</div>
+<div class="row">
+  <div class="invite-form">
+    <h2> Invite Guests to <%= @event.name %>! </h2><br>
     <%= form_for [@event, Invitation.new], remote: true do |f| %>
-    <%= f.label :guest_email %>
-    <%= f.text_field :guest_email, placeholder: "Enter guest's email here" %>
-    <%= f.submit "Add to guest list" %>
+    <h4><%= f.label :guest_email %>
+    <%= f.text_field :guest_email, placeholder: "friend@email.com" %>
+    <%= f.submit "Add to guest list" %></h4>
     <% end %>
-
-    <h3> Invitations </h3>
-    <div>
-      <ul class="invites">
-      <% @event.invitations.each do |invite| %>
-        <% if invite.guest_id == nil %>
-          <li><%= invite.guest_email %></li>
-        <% else %>
-          <li><%= invite.guest.full_name %></li>
+    <div class="row">
+      <div class="invite-list">
+        <% if @event.invitations.size > 0 %>
+        <h3> Invitations </h3>
+          <div class="invitations">
+            <ul class="invites">
+            <% @event.invitations.each do |invite| %>
+              <% if invite.guest_id == nil %>
+                <li><%= invite.guest_email %></li>
+              <% else %>
+                <li><%= invite.guest.full_name %></li>
+              <% end %>
+            <% end %>
+            </ul>
+          </div>
         <% end %>
-      <% end %>
-      </ul>
+      </div>
     </div>
+  </div>
+</div>

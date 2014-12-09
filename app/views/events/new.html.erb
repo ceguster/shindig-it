@@ -6,11 +6,11 @@
 </div>
 
   <div class="new-event">
-    <h2>BEST EVENT EVER!</h2>
+    <h2>Make Your New Event</h2>
       <%= form_for [@host, Event.new] do |f| %>
       <div class="row">
         <%= f.label :name %><br>
-        <%= f.text_field :name, :placeholder => "Event name", :autofocus => true %>
+        <%= f.text_field :name, :placeholder => "What's the occasion?", :autofocus => true %>
       </div>
       <div class="row">
         <%= f.label :details %><br> 
@@ -18,7 +18,7 @@
       </div>
       <div class="row">
         <%= f.label :tagline %><br>
-        <%= f.text_field :tagline, :placeholder => "e.g., 'Nothing will matter after this party'" %>
+        <%= f.text_field :tagline, :placeholder => "e.g., 'Party like it's 1999'" %>
       </div>
       <div class="row">
         <%= f.label :location %><br>

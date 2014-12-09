@@ -5,21 +5,26 @@
   </header>
 </div>
 
-<div class='new-event'>
+<div class="event">
+  <div class="row">
     <section id="wrapper">
-      <h1><%= @event.name %></h1>
-      <h2>by <%= @host.full_name %></h2>
-      <% if @event.tagline %> <h3>"<%= @event.tagline %>"</h3><%end%><br>
-
-      <h3>What? <%= @event.details %></h3><br>
-      <h3>When? <%= @event.date %>, at <%= @event.formatted_time %></h3><br>
-      <h3>Where? <%= @event.location %></h3>
-
-      <% if current_user == @host %>
-        <h4><%= link_to "Edit event", edit_event_path(@event) %><br><br>
-        <h4><%= button_to "Cancel event", event_path(@event), method: "delete", data: { confirm: "Are you sure you want to cancel this event?" } %><br><br>
-      <% end %>
-
+      <h2><%= @event.name %></h2>
+      <h4>hosted by <%= @host.full_name %></h4>
+      <% if @event.tagline %> <h4><p class="oblique">"<%= @event.tagline %>"</p></h4><%end%>
+  </div><br>
+  <div class="row">
+    <div class="event-details">
+      <h4><strong>What?:</strong>  <%= @event.details %></h4>
+      <h4><strong>When?:</strong>  <%= @event.date %>, at <%= @event.formatted_time %></h4>
+      <h4><strong>Where?:</strong>  <%= @event.location %></h4>
+        <% if current_user == @host %>
+          <h4><%= link_to "Edit event", edit_event_path(@event) %></h4>
+          <h4><%= button_to "Cancel event", event_path(@event), method: "delete", data: { confirm: "Are you sure you want to cancel this event?" } %>
+        <% end %></h4>
+      </div>
+  </div>
+  <div class="row"> 
+    <div class="">
       <% if @event.invitations.size != 0 %>
         <h3>Guest List</h3>
         <ul>
@@ -35,7 +40,8 @@
       <% else %>
         <% if current_user == @host %> <%= link_to "Invite guests to #{@event.name}", new_event_invitation_path(@event) %> <%end%>
       <% end %>
-      
+    </div>   
+    <div class="">
       <% if @event.contributions.size != 0 %>
         <h3>Menu</h3>
         <div class="Appetizer">
@@ -134,11 +140,13 @@
           <%= link_to "Create menu for #{@event.name}", new_event_contribution_path(@event) %>
         <% end %>
       <% end %>
-    </wrapper>
+    </div>
+  </div>
+    </section>
     <br><br>
     <script type="text/javascript">
       $(document).ready(function() {
           $(".fancybox").fancybox();
       });
     </script>
-</div>
+</div
