@@ -50,6 +50,7 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+
   config.assets.compile = true
 
   config.serve_static_assets = true
