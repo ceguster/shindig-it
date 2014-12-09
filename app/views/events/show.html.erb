@@ -8,52 +8,52 @@
 <div class="event">
   <div class="row">
     <section id="wrapper">
-      <h2><%= @event.name %></h2>
+      <h1><%= @event.name %></h1>
       <h4>hosted by <%= @host.full_name %></h4>
-      <% if @event.tagline %> <h4><p class="oblique">"<%= @event.tagline %>"</p></h4><%end%>
-  </div><br>
+      <% if @event.tagline %> <h3><p class="oblique">"<%= @event.tagline %>"</p></h3><%end%>
+  </div>
   <div class="row">
     <div class="event-details">
-      <h4><strong>What?:</strong>  <%= @event.details %></h4>
-      <h4><strong>When?:</strong>  <%= @event.date %>, at <%= @event.formatted_time %></h4>
-      <h4><strong>Where?:</strong>  <%= @event.location %></h4>
+      <h4><strong>What?:</strong><p class="oblique">  <%= @event.details %></p></h4>
+      <h4><strong>When?:</strong><p class="oblique">  <%= @event.date %>, at <%= @event.formatted_time %></p></h4>
+      <h4><strong>Where?:</strong><p class="oblique">  <%= @event.location %></p></h4>
         <% if current_user == @host %>
-          <h4><%= link_to "Edit event", edit_event_path(@event) %></h4>
+          <h4 class="event-links"><%= link_to "Edit event", edit_event_path(@event) %></h4>
           <h4><%= button_to "Cancel event", event_path(@event), method: "delete", data: { confirm: "Are you sure you want to cancel this event?" } %>
         <% end %></h4>
       </div>
   </div>
   <div class="row"> 
-    <div class="">
+    <div class="event-guest-list">
       <% if @event.invitations.size != 0 %>
-        <h3>Guest List</h3>
+        <h2>Guest List</h2>
         <ul>
           <% @event.invitations.each do |invite| %>
             <% if invite.guest_id == nil %>
-              <li><%= invite.guest_email %> - <%= invite.status %></li>
+              <h4><li><%= invite.guest_email %> - <%= invite.status %></li></h4>
             <% else %>
               <li><%= invite.guest.full_name %> - <%= invite.status %></li>
             <% end %>
           <% end %>
-        </ul>
+        </ul><br>
         <% if current_user == @host %> <%= link_to "Invite more guests to #{@event.name}", new_event_invitation_path(@event) %><%end%>
       <% else %>
         <% if current_user == @host %> <%= link_to "Invite guests to #{@event.name}", new_event_invitation_path(@event) %> <%end%>
       <% end %>
     </div>   
-    <div class="">
+    <div class="event-menu">
       <% if @event.contributions.size != 0 %>
-        <h3>Menu</h3>
+        <h2>Menu</h2>
         <div class="Appetizer">
           <% if @menu["Appetizer"] %>
             <h4>Appetizer</h4>
-            <ul id="<%= current_user.full_name %>">
+            <ul class="list-unstyled" id="<%= current_user.full_name %>">
               <% @menu["Appetizer"].each do |contribution| %>
-              <li class="appetizer contribution-<%= contribution.id %>" id="<%= contribution.id %>" data-id="<%= @event.id %>">
-                <%= contribution.yummly_recipe_name %>
-                <%= link_to "More Info", event_contribution_path(@event, contribution), :class => "fancybox" %>
+              <li class="menu-li" class="appetizer contribution-<%= contribution.id %>" id="<%= contribution.id %>" data-id="<%= @event.id %>">
+                <%= contribution.yummly_recipe_name %></li>
+                <%= link_to "More Info ", event_contribution_path(@event, contribution), :class => "fancybox" %>
                 <% if current_user == @host %>
-                  <%= link_to "Delete item", event_contribution_path(@event, contribution), remote: true ,method: 'delete', data: { confirm: "Are you sure you want to delete this menu item?" }%>
+                  <%= link_to " Delete item", event_contribution_path(@event, contribution), remote: true ,method: 'delete', data: { confirm: "Are you sure you want to delete this menu item?" }%>
                 <% end %>
                 <% if contribution.guest_id == nil %>
                   <div class="unclaimed" id="unclaimed-<%= contribution.id %>">Claim</div>
@@ -71,8 +71,8 @@
             <h4>Main Course</h4>
             <ul id="<%= current_user.full_name %>">
               <% @menu["Main Course"].each do |contribution| %>
-              <li class="main contribution-<%= contribution.id %>" id="<%= contribution.id %>" data-id="<%= @event.id %>">
-                <%= contribution.yummly_recipe_name %>
+              <li class="menu-li" class="main contribution-<%= contribution.id %>" id="<%= contribution.id %>" data-id="<%= @event.id %>">
+                <%= contribution.yummly_recipe_name %></li>
                 <%= link_to "More Info", event_contribution_path(@event, contribution), :class => "fancybox" %>
                 <% if current_user == @host %>
                   <%= link_to "Delete item", event_contribution_path(@event, contribution), remote: true ,method: 'delete', data: { confirm: "Are you sure you want to delete this menu item?" }%>

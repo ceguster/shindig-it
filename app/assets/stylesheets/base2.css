@@ -34,7 +34,7 @@
 }
 
 .event{
-  width: 950px;
+  width: 850px;
   height: 600px;
   background-color: rgba(255,255,255,0.75);
   text-align: center;
@@ -45,6 +45,7 @@
   right: 0;
   left: 0;
   line-height: 25px;
+  overflow: scroll;
 }
 
 .event-details{
@@ -55,18 +56,23 @@
 p.oblique{
   font-style: oblique;
   text-align: center;
+  display: inline;
 }
 
 .event-guest-list{
-  text-align: left;
-  margin-top: 20px;
-  margin-left: 50px;
+  display: inline-block;
+  float: left;
+  width: 50%;
+  height: 600px;
+  overflow: scroll;
 }
 
 .event-menu{
-  text-align: right;
-  margin-top: 20px;
-  margin-right: 50px;
+  display: inline-block;
+  float: left;
+  width: 50%;
+  height: 600px;
+  overflow: scroll;
 }
 
 .invite-form{
@@ -112,6 +118,19 @@ p.oblique{
   font-weight: 800;
   font-size 200%: 
 }
+
+.event-links{
+  display: block;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.menu-li{
+  text-align: center;
+  font-weight: 800;
+}
+
 
 
 
