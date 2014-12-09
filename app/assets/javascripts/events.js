@@ -11,8 +11,8 @@ $(document).ready(function(){
       url: '/events/' + eventId + '/contributions/' + contributionId ,
       method: 'patch',
       success: function(){
-        $('#unclaimed-' + contributionId).remove();
-        $('.claimed-unclaimed-' + contributionId ).prepend('<div id="claim-name-' + contributionId + '"class="claim-name">claimed by ' + username + ' </div><div class="claimed" id="claimed-' + contributionId + ' data-id="' + contributionId + '">Unclaim</div>');
+        $('.claimed-unclaimed-' + contributionId).html('');
+        $('.claimed-unclaimed-' + contributionId ).append('<div id="claim-name-' + contributionId + '"class="claim-name">claimed by ' + username + ' </div><div class="claimed" id="claimed-' + contributionId + '" data-id="'+contributionId + '">Unclaim</div>');
       }
     });
   });
@@ -28,9 +28,8 @@ $(document).ready(function(){
       url: '/events/' + eventId + '/contributions/' + contributionId ,
       method: 'patch',
       success: function(){
-        $('#claimed-' + contributionId).remove();
-        $(claimName).remove();
-        $('.claimed-unclaimed-' + contributionId).prepend('<div class="unclaimed" id="unclaimed-' + contributionId + '"data-id="' + contributionId + '">Claim</div>');
+        $('.claimed-unclaimed-' + contributionId).html('');
+        $('.claimed-unclaimed-' + contributionId).append('<div class="unclaimed" id="unclaimed-' + contributionId + '" data-id="'+ contributionId + '">Claim</div>');
       }
     }); 
   });

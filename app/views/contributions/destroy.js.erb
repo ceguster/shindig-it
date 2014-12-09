@@ -1,5 +1,11 @@
-if($('.contribution-<%= @contribution_id %>').parents('ul').children().length > 1){
-  $('.contribution-<%= @contribution_id %>').remove();
+// if($('.contribution-<%= @contribution_id %>').parents('ul').children().length > 1){
+//   $('.contribution-<%= @contribution_id %>').remove();
+// }else{
+//   $('.contribution-<%= @contribution_id %>').parents('div').remove();
+// }
+
+if($('.li-<%= @contribution.id %>').siblings().length >= 1){
+  $('.li-<%= @contribution.id %>').remove();
 }else{
-  $('.contribution-<%= @contribution_id %>').parents('div').remove();
+  $('.li-<%= @contribution.id %>').parent().parent().remove();
 }
