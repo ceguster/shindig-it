@@ -1,11 +1,12 @@
 
 $(document).ready(function(){
 
-  $('#wrapper').on('click', '.unclaimed', function(e){
+  $('.event-menu').on('click', '.unclaimed', function(e){
     e.preventDefault();
     var eventId = $(this).parent().data('id');
-    var contributionId = $(this).parent().attr('id');
+    var contributionId = $(this).data('id');
     var liEl = $(this).parent();
+    
     var username = $(this).parents('ul').attr('id');
     $.ajax ({
       url: '/events/' + eventId + '/contributions/' + contributionId ,
@@ -17,13 +18,13 @@ $(document).ready(function(){
     });
   });
 
-  $('#wrapper').on('click', '.claimed', function(e){
+  $('.event-menu').on('click', '.claimed', function(e){
     e.preventDefault();
     var eventId = $(this).parent().data('id');
-    var contributionId = $(this).parent().attr('id');
+    var contributionId = $(this).data('id');
     var liEl = $(this).parent();
+    
     var claimName = $(this).siblings('#claim-name-' + contributionId)
-
     $.ajax ({
       url: '/events/' + eventId + '/contributions/' + contributionId ,
       method: 'patch',

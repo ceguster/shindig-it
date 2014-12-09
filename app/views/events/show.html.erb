@@ -44,11 +44,10 @@
     <div class="event-menu">
     <h2>Menu</h2>
       <% if @event.contributions.size != 0 %>
-        
         <div class="Appetizer">
           <% if @menu["Appetizer"] %>
             <h4>Appetizer</h4>
-            <ul class="list-unstyled" id="<%= current_user.full_name %>">
+            <ul class="list-unstyled" id="<%= current_user.full_name %>" data-id="<%= @event.id %>">
               <% @menu["Appetizer"].each do |contribution| %>
               <li class="menu-li" class="appetizer contribution-<%= contribution.id %>" id="<%= contribution.id %>" data-id="<%= @event.id %>">
                 <%= contribution.yummly_recipe_name %></li>
@@ -57,12 +56,11 @@
                   <%= link_to " Delete item", event_contribution_path(@event, contribution), remote: true ,method: 'delete', data: { confirm: "Are you sure you want to delete this menu item?" }%>
                 <% end %>
                 <% if contribution.guest_id == nil %>
-                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>">Claim</div>
+                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
                 <% else %>
                   <div id="claim-name-<%= contribution.id %>">claimed by <%= contribution.guest.full_name %></div>
-                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>">Unclaim</div><% end %>
+                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
                 <% end %>
-              </li>
               <% end %>
             </ul>
           <% end %>
@@ -70,7 +68,7 @@
         <div class="Main Course">
           <% if @menu["Main Course"] %>
             <h4>Main Course</h4>
-            <ul class="list-unstyled" id="<%= current_user.full_name %>">
+            <ul class="list-unstyled" id="<%= current_user.full_name %>" data-id="<%= @event.id %>">
               <% @menu["Main Course"].each do |contribution| %>
               <li class="menu-li" class="main contribution-<%= contribution.id %>" id="<%= contribution.id %>" data-id="<%= @event.id %>">
                 <%= contribution.yummly_recipe_name %></li>
@@ -79,12 +77,11 @@
                   <%= link_to "Delete item", event_contribution_path(@event, contribution), remote: true ,method: 'delete', data: { confirm: "Are you sure you want to delete this menu item?" }%>
                 <% end %>
                 <% if contribution.guest_id == nil %>
-                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>">Claim</div>
+                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
                 <% else %>
                   <div id="claim-name-<%= contribution.id %>">claimed by <%= contribution.guest.full_name %></div>
-                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>">Unclaim</div><% end %>
+                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
                 <% end %>
-              </li>
               <% end %>
             </ul>
           <% end %>
@@ -92,7 +89,7 @@
         <div class="Dessert">
           <% if @menu["Dessert"] %>
             <h4>Dessert</h4>
-            <ul class="list-unstyled" id="<%= current_user.full_name %>">
+            <ul class="list-unstyled" id="<%= current_user.full_name %>" data-id="<%= @event.id %>">
               <% @menu["Dessert"].each do |contribution| %>
               <li class="dessert contribution-<%= contribution.id %>" id="<%= contribution.id %>" data-id="<%= @event.id %>">
                 <%= contribution.yummly_recipe_name %></li>
@@ -101,12 +98,11 @@
                   <%= link_to "Delete item", event_contribution_path(@event, contribution), remote: true ,method: 'delete', data: { confirm: "Are you sure you want to delete this menu item?" }%>
                 <% end %>
                 <% if contribution.guest_id == nil %>
-                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>">Claim</div>
+                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
                 <% else %>
                   <div id="claim-name-<%= contribution.id %>">claimed by <%= contribution.guest.full_name %></div>
-                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>">Unclaim</div><% end %>
+                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
                 <% end %>
-              </li>
               <% end %>
             </ul>
           <% end %>
@@ -114,7 +110,7 @@
         <div class="Other">
           <% if @menu["Other"] %>
             <h4>Other</h4>
-            <ul id="<%= current_user.full_name %>">
+            <ul id="<%= current_user.full_name %>" data-id="<%= @event.id %>">
               <% @menu["Other"].each do |contribution| %>
               <li class="other contribution-<%= contribution.id %>" id="<%= contribution.id %>" data-id="<%= @event.id %>">
                 <%= contribution.yummly_recipe_name %>
@@ -123,12 +119,11 @@
                   <%= link_to "Delete item", event_contribution_path(@event, contribution), remote: true ,method: 'delete', data: { confirm: "Are you sure you want to delete this menu item?" }%>
                 <% end %>
                 <% if contribution.guest_id == nil %>
-                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>">Claim</div>
+                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
                 <% else %>
-                  <div id="claim-name-<%= contribution.id %>">claimed by <%= contribution.guest.full_name %></div>
-                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>">Unclaim</div><% end %>
+                  <div id="claim-name-<%= contribution.id %>" class="claim-name">claimed by <%= contribution.guest.full_name %></div>
+                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
                 <% end %>
-              </li>
               <% end %>
             </ul>
           <% end %>
