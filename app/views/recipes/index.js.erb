@@ -1,5 +1,3 @@
-if($("#recipe").length > 0){
-  $("#recipe").slideUp();
-}
-$(".recipes").append("<%= j render 'recipes' %>")
+$(".recipes").html('');
+$(".recipes").append("<%= j render 'recipes' %>");
 $('.fancybox').fancybox();
