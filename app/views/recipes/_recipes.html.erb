@@ -1,26 +1,30 @@
 <% if @recipes.count == 0 %>
-<div class="recipe">
-  <h4> Sorry, your search didn't not return any results, please try a different search. </h4>
-</div>
+  <div id="recipe">
+    <h4> Sorry, your search didn't not return any results, please try a different search. </h4>
+  </div>
 <% else %>
   <% @recipes.each do |recipe| %>
-  <div class="recipe">
-    <div>
-      <h4><%= recipe[:name] %></h4>
-      <ul>
-        <li> Ingredients: <%= recipe[:ingredients] %></li>
-        <li>Rating: <%= recipe[:rating] %>/5</li>
-      </ul>
+    <div id="recipe">
+      <div class="recipe-image">
+        <%= image_tag(recipe[:image], :size => "90") %><br>
+      </div>
+      <div class="recipe-info">
+        <h4><%= recipe[:name] %></h4>
+        <h5 class="info">Ingredients: <%= recipe[:ingredients] %></h5>
+        <h5 class="info">Rating: <%= recipe[:rating] %>/5</h5>
+      </div>
+      <div class="more-add">
+        <div class="more">
+          <%= link_to "More Info", "#{recipe_path(recipe[:id])}?event_id=#{recipe[:event_id]}&course=#{recipe[:search_course]}", :class => "fancybox"%>
+        </div>
+        <div class="add">
+          <%= form_for [@event, Contribution.new], remote: true do |f| %>
+            <%= f.hidden_field :recipe_id, :value => recipe[:id] %>
+            <%= f.hidden_field :search_course, :value => recipe[:search_course] %>
+            <%= f.submit "Add to Menu" %>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= image_tag(recipe[:image], :size => "90") %><br>
-      <%= link_to "More Info", "#{recipe_path(recipe[:id])}?event_id=#{recipe[:event_id]}&course=#{recipe[:search_course]}", :class => "fancybox"%>
-      <%= form_for [@event, Contribution.new], remote: true do |f| %>
-      <%= f.hidden_field :recipe_id, :value => recipe[:id] %>
-      <%= f.hidden_field :search_course, :value => recipe[:search_course] %>
-      <%= f.submit "Add to Menu" %>
-      <% end %>
-    </div>
-  </div>
   <% end %>
 <% end %>

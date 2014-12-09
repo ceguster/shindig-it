@@ -1,4 +1,4 @@
-<div style="width:450px; height:150px; text-align:center;">
+<div class="rsvp">
   <h2> RSVP to <%= @event.name %> </h2>
   <%= form_for [@event, @invitation], :remote => true do |f| %>
     <%= f.submit "Attending" %>

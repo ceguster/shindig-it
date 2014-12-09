@@ -1,11 +1,11 @@
+<div class="header-right">
+  <h5><%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
+</div>
 <section id="profile-wrapper" class="clearfix">
-  <div class="links">
-    <h5><%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
-  </div>
   <div class="profile">
     <div class="form-image">
       <div class="profile-image">
-        <%= image_tag(@user.avatar.url, size: "120") %>
+        <%= image_tag(@user.avatar.url, size: "170") %>
       </div>
       <div class="change-image-form">
         <%= form_for profile_path(@user), :method => 'patch' do |f| %>
@@ -25,9 +25,9 @@
       <h4> You have no hosted events! </h4>
     <% else %>
       <ul> 
-        <% @user.hosted_events.each do |event| %>
-          <li><%= link_to "#{event.name}", event_path(event) %></li>
-        <% end %>
+      <% @user.hosted_events.each do |event| %>
+        <li><h3><%= link_to "#{event.name}", event_path(event) %></h3></li>
+      <% end %>
       </ul>
     <% end %>
   </div>
@@ -37,7 +37,7 @@
       <h4> Pending </h4>
         <ul> 
         <% @user.pending_events.each do |event| %>
-          <li class="event-<%= event.id %>"><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%> - <div class="rsvp-status">Your RSVP: <%= event.event_invite(@user).status %></div></li>
+          <li class="event-<%= event.id %>"><h4><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%><div class="rsvp-status"> - Your RSVP: <%= event.event_invite(@user).status %></div></h4></li>
         <% end %>
       </ul>
     <% end %>
@@ -45,7 +45,7 @@
       <h4> Upcoming </h4>
       <ul> 
         <% @user.upcoming_events.each do |event| %>
-          <li class="event-<%= event.id %>"><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "Change RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%> - <div class="rsvp-status">Your RSVP: <%= event.event_invite(@user).status %></div></li>
+          <li class="event-<%= event.id %>"><h4><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "Change RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%> - </h4><div class="rsvp-status"><h4>Your RSVP: <%= event.event_invite(@user).status %></h4></div></li>
         <% end %>
       </ul>
     <% end %>
@@ -53,7 +53,7 @@
       <h4> Past </h4>
       <ul> 
         <% @user.past_events.each do |event| %>
-          <li><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %> </li>
+          <li><h4><%= link_to "#{event.name}", event_path(event) %> - Your RSVP: <%= event.event_invite(@user).status %></h4></li>
         <% end %>
       </ul>
     <% end %>
