@@ -14,18 +14,15 @@
         <div class="profile-image">
         <%= image_tag(@user.avatar.url, size: "120") %>
         </div>
-
         <%= form_for profile_path(@user), :method => 'patch' do |f| %>
-          <div class="field">
-          <%= f.label :avatar %><br>
+          <div class="change-image-form">
           <%= f.file_field :avatar %>
-          <%= f.submit %>
+          <%= f.submit "Update Profile Image" %>
           </div>
         <% end %>
 
         <h3><%= link_to "Make a new event!", new_event_path %></h3>
       </div>
-
 
       <div class="col_left">
       <h3>Your Hosted Events </h3>
