@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   has_many   :guests, :through => :invitations
 
   after_destroy :delete_invitations, :delete_contributions
+  validates_presence_of :name, :details, :date, :start_time, :location
 
   def menu
    menu = {}
