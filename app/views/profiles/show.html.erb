@@ -3,17 +3,21 @@
     <h5><%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
   </div>
   <div class="profile">
-    <h1> Hi <%=@user.first_name %>! </h1>
-    <div class="profile-image">
-    <%= image_tag(@user.avatar.url, size: "120") %>
+    <div class="form-image">
+      <div class="profile-image">
+        <%= image_tag(@user.avatar.url, size: "120") %>
+      </div>
+      <div class="change-image-form">
+        <%= form_for profile_path(@user), :method => 'patch' do |f| %>
+          <%= f.file_field :avatar %>
+          <%= f.submit "Update Profile Image" %>
+        <% end %>
+      </div>
     </div>
-    <div class="change-image-form">
-    <%= form_for profile_path(@user), :method => 'patch' do |f| %>
-      <%= f.file_field :avatar %>
-      <%= f.submit "Update Profile Image" %>
-    <% end %>
+    <div class="greeting">
+      <h1> Hi <%=@user.first_name %>! </h1>
+      <h3><%= link_to "Make a new event!", new_event_path %></h3>
     </div>
-    <h3><%= link_to "Make a new event!", new_event_path %></h3>
   </div>
   <div class="hosted">
     <h3>Your Hosted Events </h3>

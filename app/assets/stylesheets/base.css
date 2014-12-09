@@ -115,14 +115,14 @@
   display:inline-block;
   float:left;
   width:50%;
-  height:500px;
+  height:600px;
   overflow: scroll;
 }
 .invited{
   display:inline-block;
   float:left;
   width:50%;
-  height:500px;
+  height:600px;
   overflow: scroll;
 }
 #made-footer{
@@ -138,13 +138,36 @@
   clear: both;
   text-align: center;
 }
-.profile-image{
+
+.profile{
+  display: block;
+  float: right;
+}
+.form-image{
+  wdith: 20%;
   display: inline;
   float: left;
   margin-left: 50px;
+  text-align: center;
+  vertical-align: center;
 }
-
-.profile{
+.profile-image{
+  width: 340px;
+  display: block;
+}
+.change-image-form{
+  width: 340px;
+  display: block;  
+}
+.greeting{
+  width: 450px;
   display: inline;
   float: right;
+  text-align: left;
+}
+.links{
+  display: block;
+  text-align: right;
+  padding: 10px;
+  margin: 10px;
 }
