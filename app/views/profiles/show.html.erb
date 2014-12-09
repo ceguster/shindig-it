@@ -37,7 +37,7 @@
       <h4> Pending </h4>
         <ul> 
         <% @user.pending_events.each do |event| %>
-          <li class="event-<%= event.id %>"><h4><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%><div class="rsvp-status"> - Your RSVP: <%= event.event_invite(@user).status %></div></h4></li>
+          <li class="event-<%= event.id %>"><h4><%= link_to "#{event.name}", event_path(event) %> - <%= link_to "RSVP", edit_event_invitation_path(event, event.event_invite(@user)), :class => "fancybox"%> - </h4><div class="rsvp-status"><h4>Your RSVP: <%= event.event_invite(@user).status %></h4></div></li>
         <% end %>
       </ul>
     <% end %>
