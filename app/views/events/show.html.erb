@@ -55,11 +55,13 @@
                 <% if current_user == @host %>
                   <%= link_to " Delete item", event_contribution_path(@event, contribution), remote: true ,method: 'delete', data: { confirm: "Are you sure you want to delete this menu item?" }%>
                 <% end %>
-                <% if contribution.guest_id == nil %>
-                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
-                <% else %>
-                  <div id="claim-name-<%= contribution.id %>">claimed by <%= contribution.guest.full_name %></div>
-                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
+                <div class="claimed-unclaimed-<%= contribution.id %>">
+                  <% if contribution.guest_id == nil %>
+                    <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
+                  <% else %>
+                    <div id="claim-name-<%= contribution.id %>">claimed by <%= contribution.guest.full_name %></div>
+                    <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
+                </div>
                 <% end %>
               <% end %>
             </ul>
@@ -76,11 +78,13 @@
                 <% if current_user == @host %>
                   <%= link_to "Delete item", event_contribution_path(@event, contribution), remote: true ,method: 'delete', data: { confirm: "Are you sure you want to delete this menu item?" }%>
                 <% end %>
-                <% if contribution.guest_id == nil %>
-                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
-                <% else %>
-                  <div id="claim-name-<%= contribution.id %>">claimed by <%= contribution.guest.full_name %></div>
-                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
+                <div class="claimed-unclaimed-<%= contribution.id %>">
+                  <% if contribution.guest_id == nil %>
+                    <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
+                  <% else %>
+                    <div id="claim-name-<%= contribution.id %>">claimed by <%= contribution.guest.full_name %></div>
+                    <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
+                </div>
                 <% end %>
               <% end %>
             </ul>
@@ -97,11 +101,13 @@
                 <% if current_user == @host %>
                   <%= link_to "Delete item", event_contribution_path(@event, contribution), remote: true ,method: 'delete', data: { confirm: "Are you sure you want to delete this menu item?" }%>
                 <% end %>
-                <% if contribution.guest_id == nil %>
-                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
-                <% else %>
-                  <div id="claim-name-<%= contribution.id %>">claimed by <%= contribution.guest.full_name %></div>
-                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
+                <div class="claimed-unclaimed-<%= contribution.id %>">
+                  <% if contribution.guest_id == nil %>
+                    <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
+                  <% else %>
+                    <div id="claim-name-<%= contribution.id %>" class="claim-name">claimed by <%= contribution.guest.full_name %></div>
+                    <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
+                </div>
                 <% end %>
               <% end %>
             </ul>
@@ -118,12 +124,14 @@
                 <% if current_user == @host %>
                   <%= link_to "Delete item", event_contribution_path(@event, contribution), remote: true ,method: 'delete', data: { confirm: "Are you sure you want to delete this menu item?" }%>
                 <% end %>
-                <% if contribution.guest_id == nil %>
-                  <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
-                <% else %>
-                  <div id="claim-name-<%= contribution.id %>" class="claim-name">claimed by <%= contribution.guest.full_name %></div>
-                  <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
-                <% end %>
+                <div class="claimed-unclaimed-<%= contribution.id %>">
+                  <% if contribution.guest_id == nil %>
+                    <div class="unclaimed" id="unclaimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Claim</div>
+                  <% else %>
+                    <div id="claim-name-<%= contribution.id %>" class="claim-name">claimed by <%= contribution.guest.full_name %></div>
+                    <% if @user == contribution.guest || @user == @host %><div class="claimed" id="claimed-<%= contribution.id %>" data-id="<%= contribution.id %>">Unclaim</div><% end %>
+                  <% end %>
+                </div>
               <% end %>
             </ul>
           <% end %>
