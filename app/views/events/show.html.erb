@@ -25,12 +25,12 @@
   </div>
   <div class="row"> 
     <div class="event-guest-list">
+      <h2>Guest List</h2>
       <% if @event.invitations.size != 0 %>
-        <h2>Guest List</h2>
-        <ul>
+        <ul class="invite-font">
           <% @event.invitations.each do |invite| %>
             <% if invite.guest_id == nil %>
-              <h4><li><%= invite.guest_email %> - <%= invite.status %></li></h4>
+              <li><%= invite.guest_email %> - <%= invite.status %></li>
             <% else %>
               <li><%= invite.guest.full_name %> - <%= invite.status %></li>
             <% end %>
@@ -42,8 +42,9 @@
       <% end %>
     </div>   
     <div class="event-menu">
+    <h2>Menu</h2>
       <% if @event.contributions.size != 0 %>
-        <h2>Menu</h2>
+        
         <div class="Appetizer">
           <% if @menu["Appetizer"] %>
             <h4>Appetizer</h4>
