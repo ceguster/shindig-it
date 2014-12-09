@@ -1,10 +1,9 @@
-
-    <header>
-      <h5> <%= link_to "Return to profile", profile_path(current_user.id) %> |
-      <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
-    </header>
-
-
+<div>
+  <header>
+    <h5> <%= link_to "Return to profile", profile_path(current_user.id) %> |
+    <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
+  </header>
+</div>
 
   <div class="new-event">
     <h2>BEST EVENT EVER!</h2>
@@ -15,11 +14,11 @@
       </div>
       <div class="row">
         <%= f.label :details %><br> 
-        <%= f.text_field :details, :placeholder => "Event details, e.g. attire, theme, etc." %>
+        <%= f.text_field :details, :placeholder => "e.g. attire, theme, etc." %>
       </div>
       <div class="row">
         <%= f.label :tagline %><br>
-        <%= f.text_field :tagline, :placeholder => "Event tagline, e.g., 'Nothing will matter after this party'" %>
+        <%= f.text_field :tagline, :placeholder => "e.g., 'Nothing will matter after this party'" %>
       </div>
       <div class="row">
         <%= f.label :location %><br>
@@ -33,7 +32,7 @@
       <%= f.label :start_time %><br>
       <%= f.time_field :start_time %>
       </div>
-      <div class="btn">
+      <div class="btn event-btn">
       <%= f.submit "PARTY TIME! EXCELLENT!" %>
       <% end %>
       </div>

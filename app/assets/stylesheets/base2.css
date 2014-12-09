@@ -1,20 +1,6 @@
-/*used on event new*/
-.signup{
-  width: 450px;
-  height: 475px;
-  background-color: rgba(255,255,255,0.75);
-  text-align: center;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
-
 .new-event{
   width: 450px;
-  height: 475px;
+  height: 515px;
   background-color: rgba(255,255,255,0.75);
   text-align: center;
   position: absolute;
@@ -23,6 +9,32 @@
   bottom: 0;
   right: 0;
   left: 0;
+  line-height: 25px;
 }
+
+.new-event input[type=text]{
+  border: 1px solid #FFFFFF;
+  padding: 5px;width: 200px;
+}
+
+.new-event input[type=date]{
+  border: 1px solid #FFFFFF;
+  height: 30px;
+  padding: 5px;width: 200px;
+}
+
+.new-event input[type=time]{
+  border: 1px solid #FFFFFF;
+  height: 28px;
+  padding: 5px;width: 200px;
+}
+
+.event-btn{
+  
+}
+
+
+
+
 
 
