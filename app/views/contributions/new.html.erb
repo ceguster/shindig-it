@@ -1,9 +1,9 @@
+<div class="header-right">
+  <h5><%= link_to "Return to #{@event.name}", event_path(@event) %> | 
+  <%= link_to "Return to profile", profile_path(current_user.id) %> | 
+  <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
+</div>
 <section id="create-menu" class="clearfix">
-  <div class="links">
-    <h5><%= link_to "Return to #{@event.name}", event_path(@event) %> | 
-    <%= link_to "Return to profile", profile_path(current_user.id) %> | 
-    <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
-  </div>
   <div class="heading-notice">
     <div><h1> Create Your Menu </h1></div>
     <div class="menu-notice"> <%= @notice %> </div><br>

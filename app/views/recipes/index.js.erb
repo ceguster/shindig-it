@@ -1,7 +1,5 @@
-// render partial of results view
-
-if($(".recipe").length > 0){
-  $(".recipe").slideUp();
+if($("#recipe").length > 0){
+  $("#recipe").slideUp();
 }
 $(".recipes").append("<%= j render 'recipes' %>")
 $('.fancybox').fancybox();
