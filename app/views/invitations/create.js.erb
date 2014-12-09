@@ -1,5 +1,5 @@
 if($('.notice').length > 0){
   $('.notice').remove();
 }
-$('.invites').append("<%= j render 'invitation' %>");
+$('.invites').prepend("<%= j render 'invitation' %>");
 $('#invitation_guest_email').val("");

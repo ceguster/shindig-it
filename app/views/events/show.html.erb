@@ -1,4 +1,4 @@
-<div>
+<div class="header-right">
   <header>
     <h5> <%= link_to "Return to profile", profile_path(current_user.id) %> |
     <%=link_to "Log Out", destroy_user_session_path, :method => :delete %></h5>
@@ -18,7 +18,7 @@
       <h4><strong>When?:</strong><p class="oblique">  <%= @event.date %>, at <%= @event.formatted_time %></p></h4>
       <h4><strong>Where?:</strong><p class="oblique">  <%= @event.location %></p></h4>
         <% if current_user == @host %>
-          <h4 class="event-links"><%= link_to "Edit event", edit_event_path(@event) %></h4>
+          <h4 class="more-show"><%= link_to "Edit event", edit_event_path(@event) %></h4>
           <h4><%= button_to "Cancel event", event_path(@event), method: "delete", data: { confirm: "Are you sure you want to cancel this event?" } %>
         <% end %></h4>
       </div>
