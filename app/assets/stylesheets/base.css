@@ -34,6 +34,7 @@
   bottom: 0;
   right: 0;
   left: 0;
+  overflow: scroll;
 }
 .forgot{
   width: 450px;
@@ -318,6 +319,15 @@ input[type="file"]{
   text-decoration: none;
 }
 
+p.alert{
+  font-weight: 800px;
+  font-size: 20px;
+  color: black;
+}
+
+p.notice{
+  color: black;
+}
 
 
 
