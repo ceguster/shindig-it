@@ -5,7 +5,7 @@
   <div class="profile">
     <div class="form-image">
       <div class="profile-image">
-        <%= image_tag(@user.avatar.url, size: "170") %>
+        <%= image_tag(@user.avatar.current_path, size: "170") %>
       </div>
       <div class="change-image-form">
         <%= form_for profile_path(@user), :method => 'patch' do |f| %>
