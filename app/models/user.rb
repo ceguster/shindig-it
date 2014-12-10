@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   def past_events
     past_events = []
     self.invitations.each do |invite|
-      past_events << invite.event if invite.status == "Attending" && invite.event.date < Date.today
+      past_events << invite.event if invite.event.date < Date.today
     end
     past_events
   end
