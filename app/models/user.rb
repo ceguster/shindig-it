@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  after_create :update_invitations
   after_create :send_welcome_mail
   after_create :set_default_profile_image
-  after_create :update_invitations
 
  #HOST METHODS
  has_many :events, :foreign_key => 'host_id'
