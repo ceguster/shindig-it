@@ -6,7 +6,7 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @guest_email = params[:invitation][:guest_email]
+    @guest_email = params[:invitation][:guest_email].downcase
     @event = Event.find(params[:event_id])
     @guest = User.find_by(:email => @guest_email)
     @found = Invitation.find_by(event_id: @event.id, guest_email: @guest_email)
